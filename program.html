@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Kerja - Karta RT 07</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3B82F6',
+              accent: '#10B981',
+            }
+          }
+        }
+      }
+    </script>
+    <!-- Library Animasi AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased overflow-x-hidden min-h-screen flex flex-col justify-between">
+
+    <!-- Glowing Background -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none z-0">
+        <div class="absolute top-[-50px] left-1/3 w-96 h-96 bg-blue-600/15 rounded-full blur-[120px]"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-emerald-400 p-0.5 shadow-lg shadow-blue-500/30">
+                    <img src="assets/logo.jpg" alt="Logo" class="w-full h-full object-cover rounded-[10px]" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center font-extrabold text-white text-xs bg-blue-600\'>KK</div>';">
+                </div>
+                <div class="flex items-center gap-2 font-bold text-xl text-white">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded-md text-xs">RT 07</span>
+                    <span>Karta <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Karya Kita</span></span>
+                </div>
+            </a>
+
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-300">
+                <a href="index.html#agenda" class="hover:text-blue-400">Agenda</a>
+                <a href="index.html#pengumuman" class="hover:text-blue-400">Pengumuman</a>
+                <a href="galeri.html" class="hover:text-blue-400">Galeri</a>
+                <a href="pengurus.html" class="hover:text-blue-400">Pengurus</a>
+                <a href="program.html" class="text-blue-400 font-semibold">Program Kerja</a>
+                <a href="berita.html" class="hover:text-blue-400">Berita</a>
+            </div>
+
+            <!-- Hamburger Button Mobile -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl text-slate-300 bg-slate-800 border border-slate-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-4 py-4 space-y-2">
+            <a href="index.html#agenda" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">📅 Agenda</a>
+            <a href="index.html#pengumuman" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">📢 Pengumuman</a>
+            <a href="index.html#galeri" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">🖼️ Galeri</a>
+            <a href="pengurus.html" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">👥 Struktur Pengurus</a>
+            <a href="program.html" class="block px-3 py-2 rounded-lg text-blue-400 font-semibold bg-slate-800">📋 Program Kerja</a>
+            <a href="berita.html" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">📰 Berita</a>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="py-12 text-center px-4 max-w-4xl mx-auto" data-aos="fade-up">
+        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+            Rencana & Aksi
+        </span>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white mt-4">Program Kerja Karang Taruna</h1>
+        <p class="text-slate-400 text-sm md:text-base mt-2">Daftar inisiatif dan program nyata pemuda RT 07 untuk kemajuan lingkungan.</p>
+    </header>
+
+    <!-- Container Program Kerja (Firebase Dynamic) -->
+    <main class="max-w-6xl mx-auto px-4 pb-16 flex-grow w-full">
+        <div id="program-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Loading Placeholder -->
+            <div class="col-span-full text-center py-12 text-slate-500">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mb-2"></div>
+                <p class="text-sm">Memuat daftar program kerja...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 px-4 text-center text-xs text-slate-500 border-t border-slate-800">
+        <p>© 2026 Pemuda Karya Kita (Karta RT 07). All rights reserved.</p>
+    </footer>
+    <script type="module" src="js/program.js"></script>
+</body>
+</html>

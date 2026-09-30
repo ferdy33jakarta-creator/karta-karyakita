@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Karta RT 07</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3B82F6',
+              accent: '#10B981',
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen selection:bg-blue-500 selection:text-white">
+
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none z-0">
+        <div class="absolute top-[-100px] left-1/3 w-96 h-96 bg-blue-600/15 rounded-full blur-[120px]"></div>
+    </div>
+
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="relative w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-emerald-400 p-0.5 shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300">
+                <img src="assets/logo.jpg" alt="Logo" class="w-full h-full object-cover rounded-[10px]" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center font-extrabold text-white text-xs bg-blue-600\'>KK</div>';">
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded-md text-xs font-semibold">Karya Kita</span>
+                    <span class="font-bold text-lg text-white">Panel Admin</span>
+                </a>
+            </div>
+            <a href="index.html" class="text-xs text-slate-400 hover:text-white bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors">
+                ← Kembali ke Website
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 relative z-10 space-y-10">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-6">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-white">Kelola Website Karya Kita</h1>
+                <p class="text-xs md:text-sm text-slate-400 mt-1">Halaman Khusus Admin Karya Kita untuk mengelola segala hal didalam website.</p>
+            </div>
+            <span class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full text-xs font-medium">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Firebase Connected
+            </span>
+        </div>
+
+        <!-- SECTION 1: AGENDA -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 bg-slate-800/60 border border-slate-700/80 p-6 rounded-2xl backdrop-blur-md">
+                <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <span>📅</span> Tambah Agenda
+                </h2>
+                <form id="formAgenda" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Judul Kegiatan</label>
+                        <input type="text" id="agendaJudul" required placeholder="" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Tanggal & Waktu</label>
+                        <input type="datetime-local" id="agendaTanggal" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Lokasi</label>
+                        <input type="text" id="agendaLokasi" required placeholder="" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Keterangan Singkat</label>
+                        <textarea id="agendaKeterangan" rows="3" placeholder="" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 rounded-xl text-sm transition-all shadow-lg shadow-blue-600/30">
+                        Simpan Agenda
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tabel Data Agenda -->
+            <div class="lg:col-span-2 bg-slate-800/40 border border-slate-700/60 p-6 rounded-2xl backdrop-blur-md">
+                <h2 class="text-lg font-bold text-white mb-4">Daftar Agenda Aktif</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-800 text-slate-400 uppercase font-semibold border-b border-slate-700">
+                            <tr>
+                                <th class="p-3">Kegiatan</th>
+                                <th class="p-3">Waktu & Tempat</th>
+                                <th class="p-3 text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelAgenda" class="divide-y divide-slate-800">
+                            <!-- Data otomatis di-load dari Firestore -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Aspirasi Admin -->
+        <section class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <span>💬</span> Aspirasi & Aduan Warga
+                </h3>
+
+                <!-- Filter Tab Status -->
+                 <button onclick="cetakLaporanAspirasi()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer shadow-md">
+                    🖨️ Cetak / Ekspor Laporan
+                </button>
+                <div class="flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800 text-xs font-medium">
+                    <button onclick="filterAspirasi('Semua')" id="btn-filter-Semua" class="filter-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all cursor-pointer">
+                        Semua
+                    </button>
+                    <button onclick="filterAspirasi('Menunggu')" id="btn-filter-Menunggu" class="filter-btn px-3 py-1.5 rounded-lg bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 transition-all cursor-pointer">
+                        ⏳ Menunggu
+                    </button>
+                    <button onclick="filterAspirasi('Diproses')" id="btn-filter-Diproses" class="filter-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all cursor-pointer">
+                        ⚙️ Diproses
+                    </button>
+                    <button onclick="filterAspirasi('Selesai')" id="btn-filter-Selesai" class="filter-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all cursor-pointer">
+                        ✅ Selesai
+                    </button>
+                    <button onclick="filterAspirasi('Ditolak')" id="btn-filter-Ditolak" class="filter-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all cursor-pointer">
+                        ❌ Ditolak
+                    </button>
+                </div>
+            </div>
+
+            <!-- Container List Aspirasi (Bisa di-scroll juga biar tetap aman) -->
+            <div id="admin-aspirasi-list" class="space-y-3 max-h-[480px] overflow-y-auto pr-2">
+                <!-- Render data aspirasi -->
+            </div>
+        </section>
+
+        <!-- SECTION 2: GALERI & PENGUMUMAN -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-6 border-t border-slate-800">
+            <!-- Form Input Galeri & Form Pengumuman -->
+            <div class="lg:col-span-1 space-y-8">
+                <!-- Ganti bagian form galeri di admin.html dengan ini -->
+                <div class="bg-slate-800/60 border border-slate-700/80 p-6 rounded-2xl backdrop-blur-md">
+                    <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <span>🖼️</span> Tambah Galeri Kegiatan
+                    </h2>
+                    <form id="formGaleri" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Nama Album / Kegiatan</label>
+                            <input type="text" id="galeriAlbum" required placeholder="Contoh: Makrab Karta 2026" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl p-2.5 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Judul / Caption Kegiatan</label>
+                            <input type="text" id="galeriJudul" required placeholder="Contoh: Keseruan malam kekraban pemuda RT 07" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
+                        </div>
+                        
+                        <!-- WADAH DINAMIS UNTUK TOMBOL TAMBAH FOTO -->
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Link Foto-foto Kegiatan</label>
+                            <div id="container-input-foto" class="space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <input type="url" name="foto-url" required placeholder="https://... (Foto Utama / Pertama)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
+                                    <span class="text-[10px] text-emerald-400 font-medium px-2 py-1 bg-emerald-500/10 rounded-lg shrink-0">Utama</span>
+                                </div>
+                            </div>
+                            <!-- Tombol Tambah Kolom Foto -->
+                            <button type="button" id="btn-tambah-foto" class="mt-2 text-xs text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1 cursor-pointer">
+                                ➕ Tambah Kolom Foto Lainnya
+                            </button>
+                            <p class="text-[10px] text-slate-500 mt-1">Foto pertama otomatis jadi foto utama yang besar di beranda.</p>
+                        </div>
+
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 rounded-xl text-sm transition-all shadow-lg shadow-emerald-600/30 cursor-pointer">
+                            Simpan Galeri Multi-Foto
+                        </button>
+                    </form>
+                </div>
+
+                <!-- KOTAK KELOLA PENGUMUMAN DI ADMIN.HTML -->
+<div class="bg-slate-800/60 border border-slate-700/80 p-6 rounded-2xl backdrop-blur-md">
+    <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+        <span>📢</span> Kelola Pengumuman Warga
+    </h2>
+    <form id="form-pengumuman" class="space-y-4 mb-6">
+        <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Judul Pengumuman</label>
+            <input type="text" id="pengumuman-judul" required placeholder="Contoh: Kerja Bakti Bulanan" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-blue-500">
+        </div>
+        <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Isi Pengumuman</label>
+            <textarea id="pengumuman-isi" required rows="3" placeholder="Tulis isi pengumuman di sini..." class="w-full bg-slate-900 border border-slate-700/80 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-blue-500"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 rounded-xl text-sm transition-all shadow-lg shadow-blue-600/30 cursor-pointer">
+            Terbitkan Pengumuman
+        </button>
+    </form>
+
+    <h3 class="text-sm font-bold text-white mb-3">Daftar Pengumuman Aktif</h3>
+    <div id="admin-pengumuman-list" class="space-y-3 max-h-60 overflow-y-auto custom-scrollbar">
+        <!-- Data pengumuman akan otomatis dimuat oleh admin.js -->
+    </div>
+</div>
+
+            <!-- List Preview Galeri & List Pengumuman -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- List Pengumuman Aktif -->
+                <div class="bg-slate-800/40 border border-slate-700/60 p-6 rounded-2xl backdrop-blur-md">
+                    <h2 class="text-lg font-bold text-white mb-4">Daftar Pengumuman Aktif</h2>
+                    <div id="admin-pengumuman-list" class="space-y-3">
+                        <p class="text-slate-500 text-sm italic">Memuat data pengumuman...</p>
+                    </div>
+                </div>
+
+                <!-- Foto Galeri Terpasang -->
+                <div class="bg-slate-800/40 border border-slate-700/60 p-6 rounded-2xl backdrop-blur-md">
+                    <h2 class="text-lg font-bold text-white mb-4">Foto Galeri Terpasang</h2>
+                    <div id="gridGaleri" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <!-- Data otomatis di-load dari Firestore -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <!-- SECTION 3: PROGRAM KERJA & BERITA (FITUR BARU) -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-6 border-t border-slate-800">
+        <!-- Input Program Kerja & Berita -->
+        <div class="lg:col-span-1 space-y-8">
+            <!-- Form Program Kerja (LENGKAP: Status, Progress, & Checklist) -->
+            <div class="bg-slate-800/60 border border-slate-700/80 p-6 rounded-2xl backdrop-blur-md">
+                <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <span>🚀</span> Tambah Program Kerja
+                </h2>
+                <form id="form-program" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Nama Program</label>
+                        <input type="text" id="program-nama" required placeholder="" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Emoji / Ikon</label>
+                        <input type="text" id="program-ikon" placeholder="" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Deskripsi Program</label>
+                        <textarea id="program-deskripsi" rows="2" placeholder="" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"></textarea>
+                    </div>
+
+                    <!-- Input Status & Slider Progress -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Status Initial</label>
+                            <select id="program-status" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+                                <option value="Belum Dimulai">Belum Dimulai</option>
+                                <option value="Sedang Berjalan" selected>Sedang Berjalan</option>
+                                <option value="Selesai">Selesai</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Progress (<span id="progress-val">0</span>%)</label>
+                            <input type="range" id="program-progress" min="0" max="100" value="0" oninput="document.getElementById('progress-val').innerText = this.value" class="w-full mt-2 accent-blue-500">
+                        </div>
+                    </div>
+
+                    <!-- Input Sub-tugas / Checklist -->
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Daftar Sub-Tugas / Checklist</label>
+                        <textarea id="program-tugas" rows="2" placeholder="Sewa Tempat, Beli Perlangkapan, Promosi Warga" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"></textarea>
+                        <p class="text-[10px] text-slate-400 mt-1">*Pisahkan tiap tugas dengan koma (,). Setelah disimpan, admin/warga bisa centang/uncentang tugas ini!</p>
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 rounded-xl text-sm transition-all shadow-lg shadow-blue-600/30">
+                        Simpan Program Kerja
+                    </button>
+                </form>
+            </div>
+
+            <!-- FORM INPUT EVENT / BANNER SPESIAL -->
+            <div class="p-6 bg-slate-900/80 rounded-2xl border border-slate-700/80 space-y-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl">📢</span>
+                    <div>
+                        <h3 class="text-base font-bold text-white">Tambah Banner Event / Poster Spesial</h3>
+                        <p class="text-xs text-slate-400">Banner akan otomatis tampil di beranda dan hilang sendiri jika tanggalnya sudah lewat.</p>
+                    </div>
+                </div>
+
+                <form id="form-event" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Judul Acara</label>
+                        <input type="text" id="event-judul" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs" placeholder="">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Deskripsi Singkat</label>
+                        <textarea id="event-deskripsi" rows="2" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs" placeholder="Keterangan singkat atau fasilitas acara..."></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1" title="Format YYYY-MM-DD untuk batas otomatis hilang">Batas Tanggal Tampil (Acara Berakhir)</label>
+                            <input type="date" id="event-tanggal-mulai" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Teks Tanggal untuk Warga</label>
+                            <input type="text" id="event-tanggal-tampil" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs" placeholder="">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Lokasi Acara</label>
+                        <input type="text" id="event-lokasi" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs" placeholder="">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Link Poster (Google Drive / URL Gambar)</label>
+                        <input type="url" id="event-poster" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs" placeholder="https://drive.google.com/...">
+                    </div>
+                    <button type="submit" class="bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-lg shadow-red-600/30 transition-all cursor-pointer">
+                        Terbitkan Banner Event
+                    </button>
+                </form>
+            </div>
+
+            <!-- DAFTAR EVENT / POSTER YANG AKTIF -->
+            <div class="mt-6 p-6 bg-slate-900/80 rounded-2xl border border-slate-700/80 space-y-4">
+                <h3 class="text-base font-bold text-white">Daftar Event & Poster Tersimpan</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-800 text-slate-400 uppercase">
+                            <tr>
+                                <th class="p-3 rounded-l-xl">Judul Acara</th>
+                                <th class="p-3">Tanggal Tampil</th>
+                                <th class="p-3">Batas Tanggal</th>
+                                <th class="p-3 rounded-r-xl text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-events-list">
+                            <!-- Data event bakal masuk ke sini secara otomatis lewat JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- FORM INPUT LINK BERITA EKSTERNAL -->
+<div class="p-6 bg-slate-900/80 rounded-2xl border border-slate-700/80 space-y-4">
+    <div class="flex items-center gap-3">
+        <span class="text-2xl">📰</span>
+        <div>
+            <h3 class="text-base font-bold text-white">Bagikan Berita / Artikel Portal</h3>
+            <p class="text-xs text-slate-400">Masukkan link berita dari portal luar beserta gambar sampulnya.</p>
+        </div>
+    </div>
+
+    <form id="form-berita-link" class="space-y-3">
+        <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">Judul Berita</label>
+            <input type="text" id="berita-judul" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs" placeholder="">
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">Link / URL Berita Asli (Portal Luar)</label>
+            <input type="url" id="berita-url" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs" placeholder="https://...">
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">Link Gambar Sampul (Thumbnail)</label>
+            <input type="url" id="berita-gambar" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs" placeholder="https://...">
+        </div>
+        <button type="submit" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-600/30 transition-all cursor-pointer">
+            Terbitkan ke Portal Berita
+        </button>
+    </form>
+</div>
+
+        <!-- List Preview Program Kerja & Berita -->
+        <div class="lg:col-span-2 space-y-6">
+            <!-- List Program Kerja -->
+            <div class="bg-slate-800/40 border border-slate-700/60 p-6 rounded-2xl backdrop-blur-md">
+                <h2 class="text-lg font-bold text-white mb-4">Daftar Program Kerja</h2>
+                <div id="admin-program-list" class="space-y-3">
+                    <p class="text-slate-500 text-sm italic">Memuat data program kerja...</p>
+                </div>
+            </div>
+
+            <!-- List Berita Terbit -->
+            <div class="bg-slate-800/40 border border-slate-700/60 p-6 rounded-2xl backdrop-blur-md">
+                <h2 class="text-lg font-bold text-white mb-4">Daftar Berita Terbit</h2>
+                <div id="admin-berita-list" class="space-y-3">
+                    <p class="text-slate-500 text-sm italic">Memuat data berita...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center text-xs text-slate-600 border-t border-slate-800/80 mt-12">
+        <p>© 2026 Pemuda Karya Kita (Karta RT 07). All rights reserved. </p>
+    </footer>
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>

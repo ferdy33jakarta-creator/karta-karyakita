@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Pengurus Resmi - Karta RT 07</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3B82F6',
+              accent: '#10B981',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Library Animasi AOS & Vanilla Tilt (3D Effect) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+    <style>
+        /* Custom Glowing & Glassmorphism Enhancements */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+        }
+        /* Gradient Animation */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .animate-glow {
+            animation: pulseGlow 6s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-500 selection:text-white overflow-x-hidden">
+
+    <!-- Background Ornamen Glowing Dinamis -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none z-0">
+        <div class="absolute top-[-120px] left-1/4 w-[450px] h-[450px] bg-blue-600/15 rounded-full blur-[140px] animate-glow"></div>
+        <div class="absolute top-[-60px] right-1/4 w-[450px] h-[450px] bg-emerald-500/15 rounded-full blur-[140px] animate-glow" style="animation-delay: 3s;"></div>
+    </div>
+
+    <!-- Navbar Sticky -->
+    <nav class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="relative w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-emerald-400 p-0.5 shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300">
+                    <img src="assets/logo.jpg" alt="Logo" class="w-full h-full object-cover rounded-[10px]" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center font-extrabold text-white text-xs bg-blue-600\'>KK</div>';">
+                </div>
+                <div class="flex items-center gap-2 font-bold text-xl tracking-wide text-white">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded-md text-xs font-semibold">RT 07</span>
+                    <span>Karta <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Karya Kita</span></span>
+                </div>
+            </a>
+
+            <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-300">
+                <a href="index.html#agenda" class="hover:text-blue-400 transition-colors">Agenda</a>
+                <a href="index.html#pengumuman" class="hover:text-blue-400 transition-colors">Pengumuman</a>
+                <a href="galeri.html" class="hover:text-blue-400 transition-colors">Galeri</a>
+                <a href="pengurus.html" class="text-blue-400 font-semibold border-b-2 border-blue-400 pb-0.5">Pengurus</a>
+                <a href="program.html" class="hover:text-blue-400 transition-colors">Program Kerja</a>
+                <a href="berita.html" class="hover:text-blue-400 transition-colors">Berita</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-900 border border-slate-800 focus:outline-none" aria-label="Toggle Menu">
+                    <svg id="hamburgerIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3 transition-all duration-300">
+            <a href="index.html#agenda" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 font-medium">📅 Agenda</a>
+            <a href="index.html#pengumuman" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 font-medium">📢 Pengumuman</a>
+            <a href="galeri.html" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 font-medium">🖼️ Galeri</a>
+            <a href="pengurus.html" class="mobile-link block px-3 py-2 rounded-lg text-blue-400 font-semibold bg-slate-900">👥 Struktur Pengurus</a>
+            <a href="program.html" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-medium">📋 Program Kerja</a>
+            <a href="berita.html" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 font-medium">📰 Berita</a>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="relative pt-16 pb-10 px-4 text-center z-10">
+        <div class="max-w-4xl mx-auto space-y-4" data-aos="fade-down" data-aos-duration="1000">
+            <span class="inline-block bg-blue-500/10 text-blue-400 border border-blue-500/20 px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wide uppercase">
+                ⚡ KARTA LINEUP 2026
+            </span>
+            <h1 class="text-3xl md:text-6xl font-extrabold text-white tracking-tight">
+                Kenalan Sama Tim <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-teal-300 to-emerald-400">Karta yuk</span>
+            </h1>
+            <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto">
+               "Wajah-wajah di balik kegiatan dan keseruan warga RT 07."
+            </p>
+        </div>
+    </section>
+
+    <!-- KONTEN UTAMA KEPENGURUSAN -->
+    <section class="max-w-6xl mx-auto px-4 pb-24 z-10 relative space-y-16">
+
+        <!-- 1. KETUA UMUM (3D Spotlight Card) -->
+        <div class="flex justify-center" data-aos="zoom-in" data-aos-duration="1200">
+            <div data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-scale="1.02" class="w-full max-w-lg glass-card p-8 rounded-3xl text-center relative overflow-hidden group border-2 border-blue-500/40">
+                <div class="absolute -top-32 -right-32 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-all"></div>
+                
+                <div class="relative w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-blue-400 p-1 mb-6 shadow-xl shadow-blue-500/30 group-hover:scale-105 transition-transform duration-500">
+                    <img src="assets/fadil.png" alt="Fajar Fadillah Pratama" class="w-full h-full object-cover rounded-full filter contrast-105">
+                </div>
+                
+                <span class="bg-blue-500/20 text-blue-400 text-xs font-black px-4 py-1.5 rounded-full border border-blue-500/30 tracking-widest uppercase">👑 Vibe Mastermind</span>
+                <h3 class="text-2xl md:text-3xl font-black text-white mt-4 tracking-wide">FAJAR FADILLAH PRATAMA</h3>
+                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mt-1">Ketua Umum</p>
+                <p class="text-xs md:text-sm text-slate-400 mt-2 max-w-sm mx-auto">"Yang nge-lead tim Karta RT 07 biar tetep solid dan searah."</p>
+            </div>
+        </div>
+
+        <!-- 2. SEKRETARIS & BENDAHARA -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Sekretaris -->
+            <div data-aos="fade-right" data-aos-duration="1000" class="glass-card p-6 md:p-8 rounded-3xl space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xl font-bold">📝</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white tracking-wide">Sekretariat</h4>
+                        <p class="text-xs text-slate-400">"Urusan administrasi, surat, dan arsip kegiatan."</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <!-- Sekretaris 1 -->
+                    <div data-tilt data-tilt-max="4" class="flex items-center gap-4 bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80 hover:border-blue-500/40 transition-all group">
+                        <div class="w-14 h-14 rounded-full overflow-hidden border border-blue-400/50 flex-shrink-0">
+                            <img src="assets/salwa.png" alt="Nabilah" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-black text-blue-400 uppercase tracking-widest block">📜 Lore Master</span>
+                            <h5 class="text-sm md:text-base font-bold text-white tracking-wide">NABILAH SALWA AZ’ZAHRA</h5>
+                            <span class="text-[10px] text-slate-500 font-medium">Sekretaris 1</span>
+                        </div>
+                    </div>
+                    <!-- Sekretaris 2 -->
+                    <div data-tilt data-tilt-max="4" class="flex items-center gap-4 bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80 hover:border-blue-500/40 transition-all group">
+                        <div class="w-14 h-14 rounded-full overflow-hidden border border-blue-400/50 flex-shrink-0">
+                            <img src="assets/rio.png" alt="Lorinius" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-black text-blue-400 uppercase tracking-widest block">📁 Script & Notes Officer</span>
+                            <h5 class="text-sm md:text-base font-bold text-white tracking-wide">LORINIUS RIONALDO</h5>
+                            <span class="text-[10px] text-slate-500 font-medium">Sekretaris 2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bendahara -->
+            <div data-aos="fade-left" data-aos-duration="1000" class="glass-card p-6 md:p-8 rounded-3xl space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl font-bold">💰</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white tracking-wide">Kebendaharaan</h4>
+                        <p class="text-xs text-slate-400">"Atur kas dan dana kegiatan secara transparan."</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <!-- Bendahara 1 -->
+                    <div data-tilt data-tilt-max="4" class="flex items-center gap-4 bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80 hover:border-emerald-500/40 transition-all group">
+                        <div class="w-14 h-14 rounded-full overflow-hidden border border-emerald-400/50 flex-shrink-0">
+                            <img src="assets/erika.png" alt="Erika" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-black text-emerald-400 uppercase tracking-widest block">💸 Chief Cuan Officer</span>
+                            <h5 class="text-sm md:text-base font-bold text-white tracking-wide">ERIKA SAFITRI</h5>
+                            <span class="text-[10px] text-slate-500 font-medium">Bendahara 1</span>
+                        </div>
+                    </div>
+                    <!-- Bendahara 2 -->
+                    <div data-tilt data-tilt-max="4" class="flex items-center gap-4 bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80 hover:border-emerald-500/40 transition-all group">
+                        <div class="w-14 h-14 rounded-full overflow-hidden border border-emerald-400/50 flex-shrink-0">
+                            <img src="assets/bila.png" alt="Nabila Kinanty" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-black text-emerald-400 uppercase tracking-widest block">🛡️ Vault Keeper</span>
+                            <h5 class="text-sm md:text-base font-bold text-white tracking-wide">NABILA KINANTY PUTRI</h5>
+                            <span class="text-[10px] text-slate-500 font-medium">Bendahara 2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 3. SEKSI-SEKSI OPERASIONAL (Dokumentasi, Perlengkapan, Humas) -->
+        <div class="space-y-8" data-aos="fade-up" data-aos-duration="1000">
+            <div class="text-center space-y-2">
+                <h3 class="text-2xl font-extrabold text-white tracking-wide">Tim Operasional</h3>
+                <p class="text-xs md:text-sm text-slate-400">"Barisan yang siap eksekusi pas acara."</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Dokumentasi -->
+                <div data-tilt data-tilt-max="5" class="glass-card p-6 rounded-3xl space-y-4">
+                    <h4 class="text-blue-400 font-bold text-sm tracking-wide flex items-center gap-2 border-b border-slate-800 pb-3">
+                        <span>📸</span> Dokumentasi & Creative
+                    </h4>
+                     <p class="text-xs md:text-sm text-slate-400">"Sipaling abadiin momen & bikin konten."</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 bg-slate-950/40 p-3 rounded-2xl border border-slate-800/60">
+                            <img src="assets/iteng.png" class="w-11 h-11 rounded-full object-cover border border-blue-400">
+                            <div>
+                                <span class="text-[10px] text-blue-400 font-extrabold tracking-wider uppercase block">✨ Aesthetic Architect</span>
+                                <h5 class="text-xs font-bold text-white">ZASKIA ALYA PUTRI</h5>
+                                <span class="text-[9px] text-slate-500 font-medium">Dokumentasi 1</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-950/40 p-3 rounded-2xl border border-slate-800/60">
+                            <img src="assets/aril.png" class="w-11 h-11 rounded-full object-cover border border-slate-700">
+                            <div>
+                                <span class="text-[10px] text-blue-400 font-extrabold tracking-wider uppercase block">🎬 Visual Storyteller</span>
+                                <h5 class="text-xs font-bold text-white">ARIL FIRMANSYAH</h5>
+                                <span class="text-[9px] text-slate-500 font-medium">Dokumentasi 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perlengkapan -->
+                <div data-tilt data-tilt-max="5" class="glass-card p-6 rounded-3xl space-y-4">
+                    <h4 class="text-amber-400 font-bold text-sm tracking-wide flex items-center gap-2 border-b border-slate-800 pb-3">
+                        <span>📦</span> Logistik & Support
+                    </h4>
+                    <p class="text-xs md:text-sm text-slate-400">"Siap angkut & sediain alat-alat acara."</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 bg-slate-950/40 p-3 rounded-2xl border border-slate-800/60">
+                            <img src="assets/zano.png" class="w-11 h-11 rounded-full object-cover border border-amber-400">
+                            <div>
+                                <span class="text-[10px] text-amber-400 font-extrabold tracking-wider uppercase block">⚙️ Gearhead Master</span>
+                                <h5 class="text-xs font-bold text-white">ZEIN ROPICK ARIZANO</h5>
+                                <span class="text-[9px] text-slate-500 font-medium">Perlengkapan 1</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-950/40 p-3 rounded-2xl border border-slate-800/60">
+                            <img src="assets/tulus.png" class="w-11 h-11 rounded-full object-cover border border-slate-700">
+                            <div>
+                                <span class="text-[10px] text-amber-400 font-extrabold tracking-wider uppercase block">💪 Heavy Support</span>
+                                <h5 class="text-xs font-bold text-white">LULUS SUYATNO</h5>
+                                <span class="text-[9px] text-slate-500 font-medium">Perlengkapan 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Humas -->
+                <div data-tilt data-tilt-max="5" class="glass-card p-6 rounded-3xl space-y-4">
+                    <h4 class="text-emerald-400 font-bold text-sm tracking-wide flex items-center gap-2 border-b border-slate-800 pb-3">
+                        <span>📢</span> Public Relations
+                    </h4>
+                    <p class="text-xs md:text-sm text-slate-400">"Sebar info & komunikasi ke warga."</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 bg-slate-950/40 p-3 rounded-2xl border border-slate-800/60">
+                            <img src="assets/fikri.png" class="w-11 h-11 rounded-full object-cover border border-emerald-400">
+                            <div>
+                                <span class="text-[10px] text-emerald-400 font-extrabold tracking-wider uppercase block">🗣️ Chief Yapping Officer</span>
+                                <h5 class="text-xs font-bold text-white">FIKRI HYKAL AL-FAKIR</h5>
+                                <span class="text-[9px] text-slate-500 font-medium">Humas 1</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-950/40 p-3 rounded-2xl border border-slate-800/60">
+                            <img src="assets/sandi.png" class="w-11 h-11 rounded-full object-cover border border-slate-700">
+                            <div>
+                                <span class="text-[10px] text-emerald-400 font-extrabold tracking-wider uppercase block">🌐 Network Connector</span>
+                                <h5 class="text-xs font-bold text-white">SANDHI ARYA NUGROHO</h5>
+                                <span class="text-[9px] text-slate-500 font-medium">Humas 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 4. PENANGGUNG JAWAB & ANGGOTA (Semua Fully Fotonya) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-4" data-aos="fade-up" data-aos-duration="1000">
+            
+            <!-- Penanggung Jawab -->
+            <div data-tilt data-tilt-max="4" class="glass-card p-8 rounded-3xl flex flex-col justify-between space-y-6 border border-blue-500/30">
+                <div class="space-y-3">
+                    <span class="inline-block bg-blue-500/20 text-blue-400 text-[10px] font-black px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-widest">🛡️ Prime Guardian</span>
+                    <h4 class="text-lg font-bold text-white">Penanggung Jawab</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">"Penasihat & pengarah kegiatan anak muda."</p>
+                </div>
+                <div class="pt-4 border-t border-slate-800/80 flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-blue-500 flex-shrink-0">
+                        <img src="assets/bayu.png" alt="Bayu Adhie" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h5 class="text-sm font-bold text-white tracking-wide">BAYU ADHIE PRAKOSO</h5>
+                        <span class="text-[10px] text-blue-400 font-bold uppercase tracking-wider block">Penanggung Jawab</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anggota Karang Taruna (8 Orang - Masing-masing Lengkap Fotonya!) -->
+            <div class="lg:col-span-2 glass-card p-6 md:p-8 rounded-3xl space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <h4 class="text-lg font-bold text-white flex items-center gap-2">
+                        <span>👥</span> Core Crew 
+                    </h4>
+                      <p class="text-xs text-slate-400 leading-relaxed">"Sosok-sosok yang selalu ada pas kumpul dan eksekusi lapangan."</p>
+                    <span class="text-xs font-bold text-slate-400 bg-slate-900 px-3 py-1 rounded-xl border border-slate-800">7 Orang Anggota</span>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    
+                    <!-- Anggota 1 -->
+                    <div class="bg-slate-950/50 p-3 rounded-2xl border border-slate-800/80 flex items-center gap-3 hover:border-slate-700 transition-all">
+                        <img src="assets/ratna.png" class="w-10 h-10 rounded-full object-cover border border-slate-700 flex-shrink-0">
+                        <div class="overflow-hidden">
+                            <span class="text-[9px] font-bold text-blue-400 uppercase tracking-widest block">🔥 Clutch Player</span>
+                            <h6 class="text-xs font-bold text-slate-200 truncate">PUJI RATNA SARI</h6>
+                        </div>
+                    </div>
+
+                    <!-- Anggota 2 -->
+                    <div class="bg-slate-950/50 p-3 rounded-2xl border border-slate-800/80 flex items-center gap-3 hover:border-slate-700 transition-all">
+                        <img src="assets/fanya.png" class="w-10 h-10 rounded-full object-cover border border-slate-700 flex-shrink-0">
+                        <div class="overflow-hidden">
+                            <span class="text-[9px] font-bold text-blue-400 uppercase tracking-widest block">⚡ Vibe Enforcer</span>
+                            <h6 class="text-xs font-bold text-slate-200 truncate">FANYA AULIA RUBBI</h6>
+                        </div>
+                    </div>
+
+                    <!-- Anggota 3 -->
+                    <div class="bg-slate-950/50 p-3 rounded-2xl border border-slate-800/80 flex items-center gap-3 hover:border-slate-700 transition-all">
+                        <img src="assets/ferdi.png" class="w-10 h-10 rounded-full object-cover border border-slate-700 flex-shrink-0">
+                        <div class="overflow-hidden">
+                            <span class="text-[9px] font-bold text-blue-400 uppercase tracking-widest block">🎯 Ground Crew</span>
+                            <h6 class="text-xs font-bold text-slate-200 truncate">FERDY EKA PRASETIYO</h6>
+                        </div>
+                    </div>
+
+                    <!-- Anggota 5 -->
+                    <div class="bg-slate-950/50 p-3 rounded-2xl border border-slate-800/80 flex items-center gap-3 hover:border-slate-700 transition-all">
+                        <img src="assets/afdal.png" class="w-10 h-10 rounded-full object-cover border border-slate-700 flex-shrink-0">
+                        <div class="overflow-hidden">
+                            <span class="text-[9px] font-bold text-blue-400 uppercase tracking-widest block">💥 Heavy Unit</span>
+                            <h6 class="text-xs font-bold text-slate-200 truncate">AFDAL RISKI MUBAROK</h6>
+                        </div>
+                    </div>
+
+                    <!-- Anggota 6 -->
+                    <div class="bg-slate-950/50 p-3 rounded-2xl border border-slate-800/80 flex items-center gap-3 hover:border-slate-700 transition-all">
+                        <img src="assets/deki.png" class="w-10 h-10 rounded-full object-cover border border-slate-700 flex-shrink-0">
+                        <div class="overflow-hidden">
+                            <span class="text-[9px] font-bold text-blue-400 uppercase tracking-widest block">🛠️ Execution Unit</span>
+                            <h6 class="text-xs font-bold text-slate-200 truncate">DEKY SEPTIAJI</h6>
+                        </div>
+                    </div>
+
+                    <!-- Anggota 7 -->
+                    <div class="bg-slate-950/50 p-3 rounded-2xl border border-slate-800/80 flex items-center gap-3 hover:border-slate-700 transition-all">
+                        <img src="assets/putri.png" class="w-10 h-10 rounded-full object-cover border border-slate-700 flex-shrink-0">
+                        <div class="overflow-hidden">
+                            <span class="text-[9px] font-bold text-blue-400 uppercase tracking-widest block">✨ Care Guard</span>
+                            <h6 class="text-xs font-bold text-slate-200 truncate">NUR LAILA PUTRI</h6>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Tombol Back To Top -->
+    <button id="backToTopBtn" class="fixed bottom-6 right-6 z-40 bg-blue-600/80 hover:bg-blue-600 text-white p-3.5 rounded-2xl shadow-xl backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 transform hover:scale-110 border border-blue-400/30">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="py-10 px-4 text-center text-xs text-slate-500 border-t border-slate-900 z-10 relative">
+        <div class="max-w-4xl mx-auto space-y-3">
+            <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                <span>🛡️</span>
+                <span>Official Portal Karang Taruna RT 07</span>
+            </div>
+            <p>© 2026 Karang Taruna Karya Kita (Karta RT 07). All rights reserved.</p>
+            <a href="login.html" class="inline-block text-slate-600 hover:text-blue-400 transition-colors">🔒 Akses Admin / Pengurus</a>
+        </div>
+    </footer>
+
+    <!-- Script Animasi AOS & Vanilla Tilt -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 900,
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        });
+
+        // Toggle Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
+
+        mobileMenuBtn?.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Back To Top Trigger
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 350) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.add('opacity-100');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.remove('opacity-100');
+            }
+        });
+
+        backToTopBtn?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
