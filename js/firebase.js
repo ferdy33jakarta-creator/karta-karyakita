@@ -15,6 +15,9 @@ import {
 // Tambahkan import Auth di sini!
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
+// Import FCM Messaging
+import { getMessaging } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js";
+
 // Konfigurasi Firebase Project Kamu
 const firebaseConfig = {
     apiKey: "AIzaSyAtXcbkaCVs_c9BNMLhnurSx54hF01CYD0",
@@ -29,11 +32,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app); // Inisialisasi Auth di sini!
+const messaging = getMessaging(app); // Inisialisasi Messaging
 
-// Export db, auth, beserta fungsi-fungsi Firestore lainnya
+// Export db, auth, messaging beserta fungsi-fungsi Firestore lainnya
 export { 
     db, 
     auth, 
+    messaging,
     collection, 
     addDoc, 
     onSnapshot, 

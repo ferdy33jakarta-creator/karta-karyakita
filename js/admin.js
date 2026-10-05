@@ -65,7 +65,7 @@ if (tabelAgenda) {
         snapshot.forEach((docItem) => {
             const data = docItem.data();
             const id = docItem.id;
-            const linkWebsite = "https://website-rt07.com"; 
+            const linkWebsite = "https://karta-karyakita.vercel.app/"; 
             const pesanWa = `Halo warga RT 07, berikut adalah informasi kegiatan:\n\n*${data.judul}*\n📅 Waktu: ${data.tanggal || '-'}\n📍 Tempat: ${data.lokasi || '-'}\n📝 Keterangan: ${data.keterangan || '-'}\n\nCek info selengkapnya di website kita:\n🌐 ${linkWebsite}\n\nMohon kehadiran dan partisipasinya. Terima kasih!`;
             const encodedPesan = encodeURIComponent(pesanWa);
 
@@ -249,7 +249,7 @@ if (gridGaleri) {
 }
 
 // ==========================================
-// 5. TAMBAH & READ PENGUMUMAN
+// 5. TAMBAH & READ PENGUMUMAN + SEBARKAN KE WA
 // ==========================================
 const formPengumuman = document.getElementById('form-pengumuman');
 if (formPengumuman) {
@@ -282,15 +282,28 @@ if (pengumumanContainer) {
         snapshot.forEach((docItem) => {
             const data = docItem.data();
             const id = docItem.id;
+
+            // Link website RT kamu (bisa disesuaikan link aslinya)
+            const linkWebsite = "https://karta-karyakita.vercel.app/"; 
+
+            // Format draf pesan yang otomatis terbuat
+            const pesanWa = `📢 *PENGUMUMAN WARGA RT 07*\n\n*${data.judul || 'Tanpa Judul'}*\n${data.isi || '-'}\n\nCek pengumuman & info lengkapnya di website resmi:\n🌐 ${linkWebsite}\n\nTerima kasih atas perhatiannya!`;
+            const encodedPesan = encodeURIComponent(pesanWa);
+
             pengumumanContainer.innerHTML += `
-                <div class="flex items-center justify-between p-3.5 bg-slate-900/80 rounded-lg border border-slate-700/80">
-                    <div>
-                        <h4 class="font-semibold text-white text-sm">${data.judul || 'Tanpa Judul'}</h4>
+                <div class="flex items-center justify-between p-3.5 bg-slate-900/80 rounded-lg border border-slate-700/80 gap-3">
+                    <div class="min-w-0 flex-1">
+                        <h4 class="font-semibold text-white text-sm truncate">${data.judul || 'Tanpa Judul'}</h4>
                         <p class="text-xs text-slate-400 mt-0.5 line-clamp-1">📢 ${data.isi || '-'}</p>
                     </div>
-                    <button onclick="hapusData('announcements', '${id}')" class="bg-red-500/20 text-red-400 border border-red-500/30 px-2.5 py-1 rounded-lg text-xs hover:bg-red-500/40 transition-colors flex-shrink-0 ml-2 cursor-pointer">
-                        Hapus
-                    </button>
+                    <div class="flex items-center gap-1.5 shrink-0">
+                        <a href="https://api.whatsapp.com/send?text=${encodedPesan}" target="_blank" class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded-lg text-xs hover:bg-emerald-500/40 transition-colors font-medium flex items-center gap-1">
+                            💬 WA
+                        </a>
+                        <button onclick="hapusData('announcements', '${id}')" class="bg-red-500/20 text-red-400 border border-red-500/30 px-2.5 py-1 rounded-lg text-xs hover:bg-red-500/40 transition-colors cursor-pointer">
+                            Hapus
+                        </button>
+                    </div>
                 </div>
             `;
         });

@@ -515,8 +515,64 @@
 
 <!-- Logika JS (Firebase & UI) -->
 <script type="module">
-    import { db } from './js/firebase.js';
+    import { db, messaging } from './js/firebase.js';
     import { collection, getDocs, addDoc, serverTimestamp, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+    import { getToken, onMessage } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js';
+
+   // ==========================================
+// INISIALISASI FIREBASE PUSH NOTIFICATION
+// ==========================================
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then((registration) => {
+            console.log('Service Worker berhasil didaftarkan:', registration.scope);
+
+            // Fungsi untuk mengambil dan menyimpan token
+            const fetchAndSaveToken = () => {
+                getToken(messaging, { 
+                    serviceWorkerRegistration: registration,
+                    vapidKey: 'BHPrn7ZXz-6JyAXuHaGeG_jOxKlUlMG9h4Vsw5y3hZKiEXwBlQr9B8azNZFqXPjaqm7ZFfhRTVPn0fTR3uN2Kfo'
+                }).then((currentToken) => {
+                    if (currentToken) {
+                        console.log('Token Notifikasi Warga:', currentToken);
+                        addDoc(collection(db, "fcm_tokens"), {
+                            token: currentToken,
+                            createdAt: serverTimestamp()
+                        }).catch(err => console.log("Gagal simpan token ke Firestore:", err));
+                    }
+                }).catch(err => console.log("Gagal mengambil token FCM:", err));
+            };
+
+            // Jika izin sudah granted, langsung ambil token
+            if (Notification.permission === 'granted') {
+                fetchAndSaveToken();
+            } else if (Notification.permission !== 'denied') {
+                // Jika belum, minta izin dulu
+                Notification.requestPermission().then((permission) => {
+                    if (permission === 'granted') {
+                        fetchAndSaveToken();
+                    }
+                });
+            }
+        })
+        .catch((err) => {
+            console.log('Gagal mendaftarkan Service Worker:', err);
+        });
+}
+
+    // Tangkap notifikasi yang masuk saat website sedang dibuka oleh warga
+    onMessage(messaging, (payload) => {
+        console.log('Pesan Notifikasi Diterima: ', payload);
+        if (payload.notification) {
+            Swal.fire({
+                title: payload.notification.title || '📢 Pengumuman Baru!',
+                text: payload.notification.body || 'Ada info terbaru dari pengurus RT 07.',
+                icon: 'info',
+                confirmButtonText: 'Lihat Pengumuman',
+                confirmButtonColor: '#3B82F6'
+            });
+        }
+    });
 
     // Inisialisasi Animation On Scroll (AOS)
     AOS.init({
