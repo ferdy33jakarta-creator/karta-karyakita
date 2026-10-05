@@ -6,7 +6,10 @@ import {
     onSnapshot, 
     doc, 
     updateDoc,
-    deleteDoc 
+    deleteDoc,
+    query,
+    where,
+    arrayUnion
 } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 
 // ==========================================
@@ -91,7 +94,7 @@ if (tabelAgenda) {
 }
 
 // ==========================================
-// 3. TAMBAH GALERI (MULTI-FOTO DINAMIS)
+// 3. TAMBAH GALERI (MULTI-FOTO DINAMIS & AUTO-MERGE ALBUM)
 // ==========================================
 const btnTambahFoto = document.getElementById('btn-tambah-foto');
 const containerInputFoto = document.getElementById('container-input-foto');
@@ -129,13 +132,34 @@ if (formGaleri) {
         }
 
         try {
-            await addDoc(collection(db, "galleries"), {
-                album, 
-                judul, 
-                foto: fotoArray,
-                createdAt: new Date().toISOString()
-            });
-            alert('Galeri multi-foto berhasil diunggah!');
+            const galeriRef = collection(db, "galleries");
+            
+            // Cek apakah album dengan nama ini sudah ada di Firestore
+            const q = query(galeriRef, where("album", "==", album));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                // ALBUM SUDAH ADA -> GABUNGKAN FOTO BARU
+                const existingDoc = querySnapshot.docs[0];
+                const docRef = doc(db, "galleries", existingDoc.id);
+
+                await updateDoc(docRef, {
+                    foto: arrayUnion(...fotoArray),
+                    judul: judul || existingDoc.data().judul // Update judul/caption jika diisi
+                });
+
+                alert(`Berhasil! ${fotoArray.length} foto baru ditambahkan ke album "${album}" yang sudah ada.`);
+            } else {
+                // ALBUM BELUM ADA -> BUAT ALBUM BARU
+                await addDoc(galeriRef, {
+                    album, 
+                    judul, 
+                    foto: fotoArray,
+                    createdAt: new Date().toISOString()
+                });
+                alert('Album galeri baru berhasil diunggah!');
+            }
+
             formGaleri.reset();
             
             containerInputFoto.innerHTML = `
@@ -163,20 +187,29 @@ function convertDriveLink(driveUrl) {
 }
 
 // ==========================================
-// 4. READ & DELETE GALERI (REALTIME)
+// 4. READ & DELETE GALERI (REALTIME) + AUTOLIST DATALIST
 // ==========================================
 const gridGaleri = document.getElementById('gridGaleri');
+const daftarAlbumDatalist = document.getElementById('daftar-album-list');
+
 if (gridGaleri) {
     onSnapshot(collection(db, "galleries"), (snapshot) => {
         gridGaleri.innerHTML = '';
+        if (daftarAlbumDatalist) daftarAlbumDatalist.innerHTML = '';
+
         if (snapshot.empty) {
             gridGaleri.innerHTML = '<p class="col-span-full text-center text-xs text-slate-500 py-4 italic">Belum ada foto di galeri.</p>';
             return;
         }
+
+        const albumSet = new Set();
+
         snapshot.forEach((docItem) => {
             const data = docItem.data();
             const id = docItem.id;
             
+            if (data.album) albumSet.add(data.album);
+
             const listFoto = data.foto || (data.url ? [data.url] : ['https://via.placeholder.com/300x200?text=No+Image']);
             
             // Konversi foto utama pertama menggunakan fungsi Google Drive
@@ -203,6 +236,15 @@ if (gridGaleri) {
                 </div>
             `;
         });
+
+        // Populate daftar nama album di datalist HTML untuk auto-complete
+        if (daftarAlbumDatalist) {
+            albumSet.forEach(namaAlbum => {
+                const opt = document.createElement('option');
+                opt.value = namaAlbum;
+                daftarAlbumDatalist.appendChild(opt);
+            });
+        }
     });
 }
 
@@ -505,9 +547,8 @@ async function loadAdminBerita() {
 // 9. BACA & UPDATE STATUS ASPIRASI WARGA (REALTIME WITH FILTER)
 // ==========================================
 const containerAspirasi = document.getElementById('admin-aspirasi-list');
-let currentFilterStatus = 'Menunggu'; // Default hanya menampilkan yang butuh respon (Menunggu)
+let currentFilterStatus = 'Menunggu';
 
-// Fungsi Render Aspirasi
 function renderAspirasiList(snapshot) {
     if (!containerAspirasi) return;
 
@@ -527,14 +568,12 @@ function renderAspirasiList(snapshot) {
         const id = docItem.id;
         const statusData = data.status || 'Menunggu';
 
-        // Filter Sesuai Tab yang Dipilih
         if (currentFilterStatus !== 'Semua' && statusData !== currentFilterStatus) {
             return;
         }
 
         countData++;
 
-        // Parsing Tanggal yang Aman
         let tanggal = '-';
         if (data.createdAt) {
             let dateObj = null;
@@ -555,7 +594,6 @@ function renderAspirasiList(snapshot) {
             }
         }
 
-        // Custom Badge Status
         let statusBadge = "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
         if (statusData === "Diproses") statusBadge = "bg-blue-500/20 text-blue-400 border-blue-500/30";
         if (statusData === "Selesai") statusBadge = "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
@@ -607,7 +645,6 @@ function renderAspirasiList(snapshot) {
     }
 }
 
-// Simpan Reference Snapshot untuk Re-render saat Switch Tab
 let latestAspirasiSnapshot = null;
 
 if (containerAspirasi) {
@@ -617,11 +654,9 @@ if (containerAspirasi) {
     });
 }
 
-// Fungsi Pindah Tab Filter Status
 window.filterAspirasi = (status) => {
     currentFilterStatus = status;
 
-    // Style Tombol Aktif & Non-aktif
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.className = "filter-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all cursor-pointer";
     });
@@ -636,7 +671,6 @@ window.filterAspirasi = (status) => {
     }
 };
 
-// Fungsi Ubah Status Aspirasi
 window.updateStatusAspirasi = async (aspirasiId, statusBaru) => {
     try {
         const aspirasiRef = doc(db, "aspirasi", aspirasiId);
@@ -646,7 +680,9 @@ window.updateStatusAspirasi = async (aspirasiId, statusBaru) => {
     } catch (err) {
         alert("Gagal mengubah status aspirasi: " + err.message);
     }
-};// ==========================================
+};
+
+// ==========================================
 // FUNGSI CETAK LAPORAN ASPIRASI (PDF/PRINT)
 // ==========================================
 window.cetakLaporanAspirasi = () => {
@@ -655,16 +691,13 @@ window.cetakLaporanAspirasi = () => {
         return;
     }
 
-    // Buat jendela cetak baru
     const printWindow = window.open('', '', 'height=600,width=800');
-    
     let tableRows = '';
     let no = 1;
 
     latestAspirasiSnapshot.forEach((docItem) => {
         const data = docItem.data();
 
-        // Format tanggal
         let tanggal = '-';
         if (data.createdAt) {
             let dateObj = (typeof data.createdAt.toDate === 'function') 
@@ -690,7 +723,6 @@ window.cetakLaporanAspirasi = () => {
         `;
     });
 
-    // Desain halaman laporan
     const printContent = `
         <!DOCTYPE html>
         <html>
@@ -740,12 +772,10 @@ window.cetakLaporanAspirasi = () => {
     printWindow.document.close();
     printWindow.focus();
 
-    // Beri jeda sedikit agar dokumen siap, lalu panggil dialog print
     setTimeout(() => {
         printWindow.print();
         printWindow.close();
     }, 500);
 };
-
 
 loadAdminBerita();
