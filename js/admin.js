@@ -250,10 +250,9 @@ if (gridGaleri) {
 // 5. TAMBAH & READ PENGUMUMAN + SEBARKAN NOTIFIKASI
 // ==========================================
 
-// Fungsi Mengirim Push Notification FCM via Vercel Backend
+// Fungsi Kirim Push Notification FCM via Vercel Backend (Hanya Dipanggil 1x)
 async function sendNotificationToAllWarga(judul, isi) {
     try {
-        // Ambil token HP warga dari Firestore collection 'fcm_tokens'
         const tokensSnapshot = await getDocs(collection(db, "fcm_tokens"));
         const tokens = [];
         tokensSnapshot.forEach((doc) => {
@@ -267,7 +266,6 @@ async function sendNotificationToAllWarga(judul, isi) {
             return;
         }
 
-        // Panggil Vercel Serverless Function untuk memproses kirim notifikasi secara online
         const response = await fetch(BACKEND_URL, {
             method: 'POST',
             headers: {
@@ -280,6 +278,10 @@ async function sendNotificationToAllWarga(judul, isi) {
             })
         });
 
+        if (!response.ok) {
+            throw new Error(`Server API error status: ${response.status}`);
+        }
+
         const result = await response.json();
         if (result.success) {
             console.log('Notifikasi push FCM berhasil terkirim ke warga!');
@@ -287,10 +289,11 @@ async function sendNotificationToAllWarga(judul, isi) {
             console.error('Gagal mengirim notifikasi:', result.error);
         }
     } catch (err) {
-        console.error('Terjadi kesalahan saat menghubungi server notifikasi:', err);
+        console.error('Terjadi kesalahan saat mengirim notifikasi:', err);
     }
 }
 
+// Form Submit Pengumuman
 const formPengumuman = document.getElementById('form-pengumuman');
 if (formPengumuman) {
     formPengumuman.addEventListener('submit', async (e) => {
@@ -305,7 +308,7 @@ if (formPengumuman) {
                 createdAt: new Date().toISOString()
             });
 
-            // 2. Trigger pengiriman Push Notification online ke HP warga
+            // 2. Trigger pengiriman Notifikasi (Cuma 1x di sini)
             await sendNotificationToAllWarga(judul, isi);
 
             alert('Pengumuman berhasil diterbitkan dan notifikasi terkirim!');
@@ -316,6 +319,7 @@ if (formPengumuman) {
     });
 }
 
+// Read Pengumuman Realtime (HANYA UNTUK MENAMPILKAN LIST DOKUMEN)
 const pengumumanContainer = document.getElementById('admin-pengumuman-list');
 if (pengumumanContainer) {
     onSnapshot(collection(db, "announcements"), (snapshot) => {
