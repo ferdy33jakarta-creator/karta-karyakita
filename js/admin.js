@@ -12,8 +12,8 @@ import {
     arrayUnion
 } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 
-// URL Endpoint Backend Node.js milik kamu (Ubah saat aplikasi di-deploy online)
-const BACKEND_URL = 'http://localhost:3000/api/send-notification';
+// URL Endpoint Backend Vercel Serverless Function (Sudah Online di Vercel)
+const BACKEND_URL = 'https://karta-karyakita.vercel.app/api/send-notification';
 
 // ==========================================
 // FUNGSI UMUM HAPUS DATA (DIPAKAI BERSAMA)
@@ -250,7 +250,7 @@ if (gridGaleri) {
 // 5. TAMBAH & READ PENGUMUMAN + SEBARKAN NOTIFIKASI
 // ==========================================
 
-// Fungsi Mengirim Push Notification FCM via Backend Server (API HTTP v1)
+// Fungsi Mengirim Push Notification FCM via Vercel Backend
 async function sendNotificationToAllWarga(judul, isi) {
     try {
         // Ambil token HP warga dari Firestore collection 'fcm_tokens'
@@ -267,7 +267,7 @@ async function sendNotificationToAllWarga(judul, isi) {
             return;
         }
 
-        // Panggil Server Backend untuk memproses kunci Service Account (.json) secara aman
+        // Panggil Vercel Serverless Function untuk memproses kirim notifikasi secara online
         const response = await fetch(BACKEND_URL, {
             method: 'POST',
             headers: {
@@ -305,7 +305,7 @@ if (formPengumuman) {
                 createdAt: new Date().toISOString()
             });
 
-            // 2. Triger pengiriman Push Notification ke HP warga
+            // 2. Trigger pengiriman Push Notification online ke HP warga
             await sendNotificationToAllWarga(judul, isi);
 
             alert('Pengumuman berhasil diterbitkan dan notifikasi terkirim!');
