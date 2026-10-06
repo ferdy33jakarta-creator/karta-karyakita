@@ -180,7 +180,7 @@
             </div>
         </section>
 
-        <!-- Masukkan ini di HTML tempat banner mau ditampilkan -->
+        <!-- Banner Event -->
         <div id="banner-event-container" class="space-y-4 mb-6"></div>
 
         <!-- Tombol CTA -->
@@ -397,7 +397,7 @@
                 </p>
             </details>
 
-            <!-- FAQ Item 4 -->
+            <!-- FAQ Item 3 -->
             <details class="bg-slate-800/40 border border-slate-700/60 rounded-2xl p-5 backdrop-blur-md group cursor-pointer hover:border-blue-500/40 transition-all duration-300">
                 <summary class="flex justify-between items-center font-semibold text-white list-none text-sm md:text-base">
                     <span>Ke mana warga bisa menyampaikan usulan atau ide kegiatan?</span>
@@ -415,64 +415,64 @@
     </section>
 
     <!-- SECTION KOTAK ASPIRASI / SUARA WARGA -->
-<section id="aspirasi" class="py-16 px-4 max-w-4xl mx-auto" data-aos="fade-up">
-    <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 md:p-8 backdrop-blur-md shadow-xl">
-        <div class="text-center mb-8">
-            <span class="px-3 py-1 bg-teal-500/10 text-teal-400 text-xs font-semibold rounded-full border border-teal-500/20 uppercase tracking-wider">
-                Suara Warga
-            </span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-3">Kotak Aspirasi & Saran</h2>
-            <p class="text-slate-400 text-sm mt-2">
-                Punya ide, kritik, atau saran untuk kemajuan Karya Kita? Sampaikan semuanya di sini ya!
-            </p>
+    <section id="aspirasi" class="py-16 px-4 max-w-4xl mx-auto" data-aos="fade-up">
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 md:p-8 backdrop-blur-md shadow-xl">
+            <div class="text-center mb-8">
+                <span class="px-3 py-1 bg-teal-500/10 text-teal-400 text-xs font-semibold rounded-full border border-teal-500/20 uppercase tracking-wider">
+                    Suara Warga
+                </span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-3">Kotak Aspirasi & Saran</h2>
+                <p class="text-slate-400 text-sm mt-2">
+                    Punya ide, kritik, atau saran untuk kemajuan Karya Kita? Sampaikan semuanya di sini ya!
+                </p>
+            </div>
+
+            <form id="formAspirasi" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Input Nama -->
+                    <div>
+                        <label for="aspirasiNama" class="block text-xs font-medium text-slate-300 mb-1">
+                            Nama / Inisial <span class="text-slate-500">(Opsional)</span>
+                        </label>
+                        <input type="text" id="aspirasiNama" placeholder="Contoh: Budi / Anonim" 
+                            class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-teal-500 transition">
+                    </div>
+
+                    <!-- Input Kategori -->
+                    <div>
+                        <label for="aspirasiKategori" class="block text-xs font-medium text-slate-300 mb-1">
+                            Kategori Aspirasi
+                        </label>
+                        <select id="aspirasiKategori" 
+                            class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500 transition">
+                            <option value="Saran & Ide">Saran & Ide Event</option>
+                            <option value="Kritik & Masukan">Kritik & Masukan</option>
+                            <option value="Fasilitas & Lingkungan">Fasilitas & Lingkungan</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Input Pesan -->
+                <div>
+                    <label for="aspirasiPesan" class="block text-xs font-medium text-slate-300 mb-1">
+                        Pesan Aspirasi <span class="text-rose-400">*</span>
+                    </label>
+                    <textarea id="aspirasiPesan" rows="4" required placeholder="Tuliskan aspirasi atau saran kamu secara jelas..." 
+                        class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-teal-500 transition resize-none"></textarea>
+                </div>
+
+                <!-- Tombol Submit -->
+                <button type="submit" id="btnSubmitAspirasi" 
+                    class="w-full bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-semibold py-3 px-6 rounded-xl text-sm transition shadow-lg shadow-teal-500/20 active:scale-[0.99]">
+                    Kirim Aspirasi 🚀
+                </button>
+
+                <!-- Status Notifikasi -->
+                <p id="aspirasiStatus" class="hidden mt-3 text-center text-sm font-semibold"></p>
+            </form>
         </div>
-
-        <form id="formAspirasi" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Input Nama -->
-                <div>
-                    <label for="aspirasiNama" class="block text-xs font-medium text-slate-300 mb-1">
-                        Nama / Inisial <span class="text-slate-500">(Opsional)</span>
-                    </label>
-                    <input type="text" id="aspirasiNama" placeholder="Contoh: Budi / Anonim" 
-                        class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-teal-500 transition">
-                </div>
-
-                <!-- Input Kategori -->
-                <div>
-                    <label for="aspirasiKategori" class="block text-xs font-medium text-slate-300 mb-1">
-                        Kategori Aspirasi
-                    </label>
-                    <select id="aspirasiKategori" 
-                        class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500 transition">
-                        <option value="Saran & Ide">Saran & Ide Event</option>
-                        <option value="Kritik & Masukan">Kritik & Masukan</option>
-                        <option value="Fasilitas & Lingkungan">Fasilitas & Lingkungan</option>
-                        <option value="Lainnya">Lainnya</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Input Pesan -->
-            <div>
-                <label for="aspirasiPesan" class="block text-xs font-medium text-slate-300 mb-1">
-                    Pesan Aspirasi <span class="text-rose-400">*</span>
-                </label>
-                <textarea id="aspirasiPesan" rows="4" required placeholder="Tuliskan aspirasi atau saran kamu secara jelas..." 
-                    class="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-teal-500 transition resize-none"></textarea>
-            </div>
-
-            <!-- Tombol Submit -->
-            <button type="submit" id="btnSubmitAspirasi" 
-                class="w-full bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-semibold py-3 px-6 rounded-xl text-sm transition shadow-lg shadow-teal-500/20 active:scale-[0.99]">
-                Kirim Aspirasi 🚀
-            </button>
-
-            <!-- Status Notifikasi -->
-            <p id="aspirasiStatus" class="hidden mt-3 text-center text-sm font-semibold"></p>
-        </form>
-    </div>
-</section>
+    </section>
 
     <!-- Tombol Back To Top (Melayang Kanan Bawah) -->
     <button id="backToTopBtn" class="fixed bottom-6 right-6 z-40 bg-blue-600/80 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 transform hover:scale-110 border border-blue-400/30">
@@ -500,564 +500,565 @@
                 <span>🛡️</span>
                 <span>Official Pemuda Karya Kita</span>
             </div>
-            <p>© 2026 Pemuda Karya Kita(Karta RT 07). All rights reserved.</p>
+            <p>© 2026 Pemuda Karya Kita (Karta RT 07). All rights reserved.</p>
             <a href="login.html" class="inline-block mt-2 text-slate-600 hover:text-blue-400 transition-colors">
                 🔒 Akses Pengurus / Admin
             </a>
         </div>
     </footer>
 
-   <!-- Script Utama (ES Module Firebase) -->
-<script type="module" src="js/main.js"></script>
+    <!-- Script Utama (ES Module Firebase) -->
+    <script type="module" src="js/main.js"></script>
 
-<!-- Script AOS JS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Script AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-<!-- Logika JS (Firebase & UI) -->
-<script type="module">
-    import { db, messaging } from './js/firebase.js';
-    import { collection, getDocs, addDoc, serverTimestamp, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
-    import { getToken, onMessage } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js';
+    <!-- Logika JS (Firebase & UI) -->
+    <script type="module">
+        import { db, messaging } from './js/firebase.js';
+        import { collection, getDocs, addDoc, doc, setDoc, serverTimestamp, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+        import { getToken, onMessage } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js';
 
-   // ==========================================
-// INISIALISASI FIREBASE PUSH NOTIFICATION
-// ==========================================
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-            console.log('Service Worker berhasil didaftarkan:', registration.scope);
+        // ==========================================
+        // INISIALISASI FIREBASE PUSH NOTIFICATION
+        // ==========================================
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then((registration) => {
+                    console.log('Service Worker berhasil didaftarkan:', registration.scope);
 
-            // Fungsi untuk mengambil dan menyimpan token
-            const fetchAndSaveToken = () => {
-                getToken(messaging, { 
-                    serviceWorkerRegistration: registration,
-                    vapidKey: 'BHPrn7ZXz-6JyAXuHaGeG_jOxKlUlMG9h4Vsw5y3hZKiEXwBlQr9B8azNZFqXPjaqm7ZFfhRTVPn0fTR3uN2Kfo'
-                }).then((currentToken) => {
-                    if (currentToken) {
-                        console.log('Token Notifikasi Warga:', currentToken);
-                        addDoc(collection(db, "fcm_tokens"), {
-                            token: currentToken,
-                            createdAt: serverTimestamp()
-                        }).catch(err => console.log("Gagal simpan token ke Firestore:", err));
-                    }
-                }).catch(err => console.log("Gagal mengambil token FCM:", err));
-            };
+                    // Fungsi untuk mengambil dan menyimpan token tanpa duplikasi
+                    const fetchAndSaveToken = () => {
+                        getToken(messaging, { 
+                            serviceWorkerRegistration: registration,
+                            vapidKey: 'BHPrn7ZXz-6JyAXuHaGeG_jOxKlUlMG9h4Vsw5y3hZKiEXwBlQr9B8azNZFqXPjaqm7ZFfhRTVPn0fTR3uN2Kfo'
+                        }).then((currentToken) => {
+                            if (currentToken) {
+                                console.log('Token Notifikasi Warga:', currentToken);
+                                
+                                // Menggunakan setDoc + merge agar token dijadikan Document ID (Mencegah Duplikasi)
+                                const tokenRef = doc(db, "fcm_tokens", currentToken);
+                                setDoc(tokenRef, {
+                                    token: currentToken,
+                                    updatedAt: serverTimestamp()
+                                }, { merge: true }).catch(err => console.log("Gagal simpan token ke Firestore:", err));
+                            }
+                        }).catch(err => console.log("Gagal mengambil token FCM:", err));
+                    };
 
-            // Jika izin sudah granted, langsung ambil token
-            if (Notification.permission === 'granted') {
-                fetchAndSaveToken();
-            } else if (Notification.permission !== 'denied') {
-                // Jika belum, minta izin dulu
-                Notification.requestPermission().then((permission) => {
-                    if (permission === 'granted') {
+                    // Jika izin sudah granted, langsung ambil token
+                    if (Notification.permission === 'granted') {
                         fetchAndSaveToken();
+                    } else if (Notification.permission !== 'denied') {
+                        // Jika belum, minta izin dulu
+                        Notification.requestPermission().then((permission) => {
+                            if (permission === 'granted') {
+                                fetchAndSaveToken();
+                            }
+                        });
                     }
+                })
+                .catch((err) => {
+                    console.log('Gagal mendaftarkan Service Worker:', err);
+                });
+        }
+
+        // Tangkap notifikasi yang masuk saat website sedang dibuka oleh warga
+        onMessage(messaging, (payload) => {
+            console.log('Pesan Notifikasi Diterima: ', payload);
+            if (payload.notification) {
+                Swal.fire({
+                    title: payload.notification.title || '📢 Pengumuman Baru!',
+                    text: payload.notification.body || 'Ada info terbaru dari pengurus RT 07.',
+                    icon: 'info',
+                    confirmButtonText: 'Lihat Pengumuman',
+                    confirmButtonColor: '#3B82F6'
                 });
             }
-        })
-        .catch((err) => {
-            console.log('Gagal mendaftarkan Service Worker:', err);
-        });
-}
-
-    // Tangkap notifikasi yang masuk saat website sedang dibuka oleh warga
-    onMessage(messaging, (payload) => {
-        console.log('Pesan Notifikasi Diterima: ', payload);
-        if (payload.notification) {
-            Swal.fire({
-                title: payload.notification.title || '📢 Pengumuman Baru!',
-                text: payload.notification.body || 'Ada info terbaru dari pengurus RT 07.',
-                icon: 'info',
-                confirmButtonText: 'Lihat Pengumuman',
-                confirmButtonColor: '#3B82F6'
-            });
-        }
-    });
-
-    // Inisialisasi Animation On Scroll (AOS)
-    AOS.init({
-        once: true,
-        duration: 800,
-        easing: 'ease-in-out',
-    });
-
-    // ==========================================
-// 1. LOGIC KOTAK ASPIRASI (SIMPAN KE FIRESTORE)
-// ==========================================
-const formAspirasi = document.getElementById('formAspirasi');
-if (formAspirasi) {
-    formAspirasi.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const namaInput = document.getElementById('aspirasiNama');
-        const kategoriInput = document.getElementById('aspirasiKategori');
-        const pesanInput = document.getElementById('aspirasiPesan');
-        const btnSubmit = document.getElementById('btnSubmitAspirasi');
-
-        const nama = namaInput?.value.trim() || 'Anonim';
-        const kategori = kategoriInput?.value || 'Saran & Ide';
-        const pesan = pesanInput?.value.trim();
-
-        // Validasi jika pesan kosong
-        if (!pesan) {
-            Swal.fire({
-                title: 'waduh, Masih Kosong! 🤔',
-                text: 'Pesan aspirasi kamu belum diisi nih. Tuliskan pesanmu dulu ya!',
-                icon: 'warning',
-                confirmButtonText: 'Oke, Siap!',
-                confirmButtonColor: '#F59E0B'
-            });
-            return;
-        }
-
-        // Tampilkan indikator Loading SweetAlert
-        Swal.fire({
-            title: 'Mengirim Aspirasi...',
-            text: 'Tunggu sebentar ya, pesanmu sedang diluncurkan ke pengurus Karya Kita 🚀',
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            didOpen: () => {
-                Swal.showLoading();
-            }
         });
 
-        // Ubah juga status tombol
-        if (btnSubmit) {
-            btnSubmit.disabled = true;
-            btnSubmit.innerText = "Mengirim...";
-        }
+        // Inisialisasi Animation On Scroll (AOS)
+        AOS.init({
+            once: true,
+            duration: 800,
+            easing: 'ease-in-out',
+        });
 
-        try {
-            // Simpan data ke koleksi 'aspirasi' di Firestore
-            await addDoc(collection(db, "aspirasi"), {
-                nama: nama,
-                kategori: kategori,
-                pesan: pesan,
-                status: "Menunggu", // Disamakan dengan status "Menunggu" di admin
-                createdAt: serverTimestamp()
-            });
+        // ==========================================
+        // 1. LOGIC KOTAK ASPIRASI (SIMPAN KE FIRESTORE)
+        // ==========================================
+        const formAspirasi = document.getElementById('formAspirasi');
+        if (formAspirasi) {
+            formAspirasi.addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-            // Pop-up Sukses dengan Animasi Lucu
-            Swal.fire({
-                title: 'Terima Kasih! 🎉',
-                text: 'Aspirasi kamu berhasil dikirim. Pengurus Karya Kita akan segera membaca pesanmu!',
-                icon: 'success',
-                confirmButtonText: 'Siap, Mantap! 👍',
-                confirmButtonColor: '#10B981',
-                showClass: {
-                    popup: 'animate__animated animate__bounceIn'
+                const namaInput = document.getElementById('aspirasiNama');
+                const kategoriInput = document.getElementById('aspirasiKategori');
+                const pesanInput = document.getElementById('aspirasiPesan');
+                const btnSubmit = document.getElementById('btnSubmitAspirasi');
+
+                const nama = namaInput?.value.trim() || 'Anonim';
+                const kategori = kategoriInput?.value || 'Saran & Ide';
+                const pesan = pesanInput?.value.trim();
+
+                // Validasi jika pesan kosong
+                if (!pesan) {
+                    Swal.fire({
+                        title: 'waduh, Masih Kosong! 🤔',
+                        text: 'Pesan aspirasi kamu belum diisi nih. Tuliskan pesanmu dulu ya!',
+                        icon: 'warning',
+                        confirmButtonText: 'Oke, Siap!',
+                        confirmButtonColor: '#F59E0B'
+                    });
+                    return;
+                }
+
+                // Tampilkan indikator Loading SweetAlert
+                Swal.fire({
+                    title: 'Mengirim Aspirasi...',
+                    text: 'Tunggu sebentar ya, pesanmu sedang diluncurkan ke pengurus Karya Kita 🚀',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                // Ubah juga status tombol
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    btnSubmit.innerText = "Mengirim...";
+                }
+
+                try {
+                    // Simpan data ke koleksi 'aspirasi' di Firestore
+                    await addDoc(collection(db, "aspirasi"), {
+                        nama: nama,
+                        kategori: kategori,
+                        pesan: pesan,
+                        status: "Menunggu", // Disamakan dengan status "Menunggu" di admin
+                        createdAt: serverTimestamp()
+                    });
+
+                    // Pop-up Sukses dengan Animasi Lucu
+                    Swal.fire({
+                        title: 'Terima Kasih! 🎉',
+                        text: 'Aspirasi kamu berhasil dikirim. Pengurus Karya Kita akan segera membaca pesanmu!',
+                        icon: 'success',
+                        confirmButtonText: 'Siap, Mantap! 👍',
+                        confirmButtonColor: '#10B981',
+                        showClass: {
+                            popup: 'animate__animated animate__bounceIn'
+                        }
+                    });
+
+                    // Reset isi form
+                    formAspirasi.reset();
+
+                } catch (err) {
+                    console.error("Gagal mengirim aspirasi:", err);
+
+                    // Pop-up jika terjadi Error
+                    Swal.fire({
+                        title: 'Opps... Gagal Terkirim!',
+                        text: 'Terjadi masalah jaringan atau sistem. Coba lagi nanti ya!',
+                        icon: 'error',
+                        confirmButtonText: 'Coba Lagi',
+                        confirmButtonColor: '#EF4444'
+                    });
+
+                } finally {
+                    // Kembalikan tombol seperti awal
+                    if (btnSubmit) {
+                        btnSubmit.disabled = false;
+                        btnSubmit.innerText = "Kirim Aspirasi 🚀";
+                    }
                 }
             });
+        }
 
-            // Reset isi form
-            formAspirasi.reset();
+        // ==========================================
+        // 2. LOGIC QUOTE VIBE KARYA KITA
+        // ==========================================
+        const daftarQuotes = [
+            { teks: "Jangan cuma FYP TikTok orang lain yang dicreate, mending ciptakan karya nyata bareng Karta Karya Kita! 🚀", penulis: "Anak Muda Karya Kita" },
+            { teks: "Info nekat: Lu ikut kumpul Karya Kita hari ini, esoknya relasi & skill lu makin nambah. Gas gak sih? 🔥", penulis: "Anak Skena Karya Kita" },
+            { teks: "Minimal ikut proker Karta sekali seumur hidup, biar pas ditanya 'kontribusi lu apa?' ada jawabannya wkwk. 🧹✨", penulis: "Relawan Karya Kita" },
+            { teks: "Gak perlu FOMO ke mana-mana, nongkrong santai & produktif bareng Karya Kita aja udah healing paling legit! ☕", penulis: "Tim Nongkrong Pos" },
+            { teks: "Silaturahmi lancar, rezeki mengalir, karya tercipta. Mari merapat ke agenda Karya Kita guys! 😎", penulis: "Slogan Pemuda" },
+            { teks: "Menjadi berguna bagi bangsa & negara? Kita mulai dari tempat kumpul sendiri: berkarya aktif di Karya Kita! 💯", penulis: "Pemuda Karya Kita" },
+            { teks: "Capek burnout sama tugas/kerjaan? Sini gabung Karya Kita, kita healing sambil eksekusi event seru bareng! ⚡", penulis: "Bukan Curhat Harian" },
+            { teks: "Hidup lagi capek-capeknya, eh inget bentar lagi Karya Kita mau bikin event seru. Auto semangat lagi! 🎉", penulis: "Pemuda Berkarya" }
+        ];
 
-        } catch (err) {
-            console.error("Gagal mengirim aspirasi:", err);
-
-            // Pop-up jika terjadi Error
-            Swal.fire({
-                title: 'Opps... Gagal Terkirim!',
-                text: 'Terjadi masalah jaringan atau sistem. Coba lagi nanti ya!',
-                icon: 'error',
-                confirmButtonText: 'Coba Lagi',
-                confirmButtonColor: '#EF4444'
-            });
-
-        } finally {
-            // Kembalikan tombol seperti awal
-            if (btnSubmit) {
-                btnSubmit.disabled = false;
-                btnSubmit.innerText = "Kirim Aspirasi 🚀";
+        function tampilQuoteAcak() {
+            const quoteRandom = daftarQuotes[Math.floor(Math.random() * daftarQuotes.length)];
+            const elTeks = document.getElementById('quoteTeks');
+            const elPenulis = document.getElementById('quotePenulis');
+            if (elTeks && elPenulis) {
+                elTeks.innerText = quoteRandom.teks;
+                elPenulis.innerText = `— ${quoteRandom.penulis}`;
             }
         }
-    });
-}
 
-    // ==========================================
-    // 2. LOGIC QUOTE VIBE KARYA KITA
-    // ==========================================
-    const daftarQuotes = [
-        { teks: "Jangan cuma FYP TikTok orang lain yang dicreate, mending ciptakan karya nyata bareng Karta Karya Kita! 🚀", penulis: "Anak Muda Karya Kita" },
-        { teks: "Info nekat: Lu ikut kumpul Karya Kita hari ini, esoknya relasi & skill lu makin nambah. Gas gak sih? 🔥", penulis: "Anak Skena Karya Kita" },
-        { teks: "Minimal ikut proker Karta sekali seumur hidup, biar pas ditanya 'kontribusi lu apa?' ada jawabannya wkwk. 🧹✨", penulis: "Relawan Karya Kita" },
-        { teks: "Gak perlu FOMO ke mana-mana, nongkrong santai & produktif bareng Karya Kita aja udah healing paling legit! ☕", penulis: "Tim Nongkrong Pos" },
-        { teks: "Silaturahmi lancar, rezeki mengalir, karya tercipta. Mari merapat ke agenda Karya Kita guys! 😎", penulis: "Slogan Pemuda" },
-        { teks: "Menjadi berguna bagi bangsa & negara? Kita mulai dari tempat kumpul sendiri: berkarya aktif di Karya Kita! 💯", penulis: "Pemuda Karya Kita" },
-        { teks: "Capek burnout sama tugas/kerjaan? Sini gabung Karya Kita, kita healing sambil eksekusi event seru bareng! ⚡", penulis: "Bukan Curhat Harian" },
-        { teks: "Hidup lagi capek-capeknya, eh inget bentar lagi Karya Kita mau bikin event seru. Auto semangat lagi! 🎉", penulis: "Pemuda Berkarya" }
-    ];
+        tampilQuoteAcak();
 
-    function tampilQuoteAcak() {
-        const quoteRandom = daftarQuotes[Math.floor(Math.random() * daftarQuotes.length)];
-        const elTeks = document.getElementById('quoteTeks');
-        const elPenulis = document.getElementById('quotePenulis');
-        if (elTeks && elPenulis) {
-            elTeks.innerText = quoteRandom.teks;
-            elPenulis.innerText = `— ${quoteRandom.penulis}`;
-        }
-    }
+        // ==========================================
+        // 3. TOGGLE HAMBURGER MENU MOBILE
+        // ==========================================
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
 
-    tampilQuoteAcak();
-    document.getElementById('btnSpillQuote')?.addEventListener('click', tampilQuoteAcak);
-
-    // ==========================================
-    // 3. TOGGLE HAMBURGER MENU MOBILE
-    // ==========================================
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const hamburgerIcon = document.getElementById('hamburgerIcon');
-    const closeIcon = document.getElementById('closeIcon');
-
-    mobileMenuBtn?.addEventListener('click', () => {
-        mobileMenu?.classList.toggle('hidden');
-        hamburgerIcon?.classList.toggle('hidden');
-        closeIcon?.classList.toggle('hidden');
-    });
-
-    document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu?.classList.add('hidden');
-            hamburgerIcon?.classList.remove('hidden');
-            closeIcon?.classList.add('hidden');
+        mobileMenuBtn?.addEventListener('click', () => {
+            mobileMenu?.classList.toggle('hidden');
+            hamburgerIcon?.classList.toggle('hidden');
+            closeIcon?.classList.toggle('hidden');
         });
-    });
 
-    // ==========================================
-    // 4. TOMBOL BACK TO TOP
-    // ==========================================
-    const backToTopBtn = document.getElementById('backToTopBtn');
-    window.addEventListener('scroll', () => {
-        if (!backToTopBtn) return;
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
-            backToTopBtn.classList.add('opacity-100');
-        } else {
-            backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
-            backToTopBtn.classList.remove('opacity-100');
-        }
-    });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu?.classList.add('hidden');
+                hamburgerIcon?.classList.remove('hidden');
+                closeIcon?.classList.add('hidden');
+            });
+        });
 
-    backToTopBtn?.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+        // ==========================================
+        // 4. TOMBOL BACK TO TOP
+        // ==========================================
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        window.addEventListener('scroll', () => {
+            if (!backToTopBtn) return;
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.add('opacity-100');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.remove('opacity-100');
+            }
+        });
+
+        backToTopBtn?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
         // Fallback Gambar SVG jika URL Gambar Rusak / Offline
-    const FALLBACK_IMAGE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzBmMTcyYSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjQ3NGhiIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCI+R2FtYmFyIFRpZGFrIFRlcnNlZGlhPC90ZXh0Pjwvc3ZnPg==";
+        const FALLBACK_IMAGE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzBmMTcyYSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjQ3NGhiIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCI+R2FtYmFyIFRpZGFrIFRlcnNlZGlhPC90ZXh0Pjwvc3ZnPg==";
 
-    // Function Mengambil 6 Foto Galeri Terbaru untuk Index Page
-    async function loadIndexGallery() {
-        const container = document.getElementById('galeri-container');
-        if (!container) return;
+        // Function Mengambil 6 Foto Galeri Terbaru untuk Index Page
+        async function loadIndexGallery() {
+            const container = document.getElementById('galeri-container');
+            if (!container) return;
 
-        try {
-            // Hanya ambil 6 foto/folder terbaru dari Firestore
-            const q = query(collection(db, "galleries"), orderBy("createdAt", "desc"), limit(6));
-            const querySnapshot = await getDocs(q);
+            try {
+                // Hanya ambil 6 foto/folder terbaru dari Firestore
+                const q = query(collection(db, "galleries"), orderBy("createdAt", "desc"), limit(6));
+                const querySnapshot = await getDocs(q);
 
-            if (querySnapshot.empty) {
-                container.innerHTML = `<p class="text-sm text-slate-500 italic col-span-full text-center">Belum ada foto galeri.</p>`;
-                return;
-            }
-
-            let html = '';
-            querySnapshot.forEach((docItem) => {
-                const data = docItem.data();
-                const gambarUrl = data.url || data.gambarUrl || data.gambar || FALLBACK_IMAGE;
-                const caption = data.judul || data.keterangan || 'Galeri Kegiatan';
-
-                html += `
-                    <div class="gallery-card group relative overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/60 cursor-pointer shadow-lg hover:border-blue-500/40 transition-all duration-300"
-                        data-src="${gambarUrl}" 
-                        data-caption="${caption}">
-                        <div class="h-52 w-full overflow-hidden bg-slate-900">
-                            <img src="${gambarUrl}" 
-                                loading="lazy" 
-                                alt="${caption}" 
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                onerror="this.onerror=null; this.src='${FALLBACK_IMAGE}';">
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                            <p class="text-white text-xs font-medium line-clamp-1">${caption}</p>
-                        </div>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
-        } catch (error) {
-            console.error("Gagal memuat galeri:", error);
-            container.innerHTML = `<p class="text-sm text-red-400 col-span-full text-center">Gagal memuat galeri.</p>`;
-        }
-    }
-
-    // Jalankan Fungsi Load Galeri Ringkas
-    loadIndexGallery();
-    // ==========================================
-    // 5. MODAL FOTO GALERI
-    // ==========================================
-    document.addEventListener('click', (e) => {
-        const card = e.target.closest('.gallery-card');
-        if (card) {
-            const src = card.getAttribute('data-src');
-            const caption = card.getAttribute('data-caption');
-            
-            const modalImg = document.getElementById('modalImg');
-            const modalCaption = document.getElementById('modalCaption');
-            const imageModal = document.getElementById('imageModal');
-
-            if (modalImg) modalImg.src = src;
-            if (modalCaption) modalCaption.innerText = caption || '';
-            if (imageModal) imageModal.classList.remove('hidden');
-        }
-    });
-
-    const closeModal = () => document.getElementById('imageModal')?.classList.add('hidden');
-    document.getElementById('closeModalBtn')?.addEventListener('click', closeModal);
-    document.getElementById('imageModal')?.addEventListener('click', (e) => {
-        if (e.target.id === 'imageModal') closeModal();
-    });
-
-    // ==========================================
-    // 6. COUNTDOWN AGENDA TERDEKAT
-    // ==========================================
-    const isSameDay = (d1, d2) => 
-        d1.getFullYear() === d2.getFullYear() &&
-        d1.getMonth() === d2.getMonth() &&
-        d1.getDate() === d2.getDate();
-
-    async function loadCountdownAgenda() {
-        try {
-            const banner = document.getElementById('countdown-banner');
-            if (!banner) return;
-
-            const querySnapshot = await getDocs(collection(db, "agendas"));
-
-            if (querySnapshot.empty) {
-                banner.style.display = 'none';
-                return;
-            }
-
-            const now = new Date().getTime();
-            let agendas = [];
-
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                if (data.tanggal) {
-                    const agendaTime = new Date(data.tanggal).getTime();
-                    agendas.push({ ...data, time: agendaTime });
+                if (querySnapshot.empty) {
+                    container.innerHTML = `<p class="text-sm text-slate-500 italic col-span-full text-center">Belum ada foto galeri.</p>`;
+                    return;
                 }
-            });
 
-            if (agendas.length === 0) {
-                banner.style.display = 'none';
-                return;
+                let html = '';
+                querySnapshot.forEach((docItem) => {
+                    const data = docItem.data();
+                    const gambarUrl = data.url || data.gambarUrl || data.gambar || FALLBACK_IMAGE;
+                    const caption = data.judul || data.keterangan || 'Galeri Kegiatan';
+
+                    html += `
+                        <div class="gallery-card group relative overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/60 cursor-pointer shadow-lg hover:border-blue-500/40 transition-all duration-300"
+                            data-src="${gambarUrl}" 
+                            data-caption="${caption}">
+                            <div class="h-52 w-full overflow-hidden bg-slate-900">
+                                <img src="${gambarUrl}" 
+                                    loading="lazy" 
+                                    alt="${caption}" 
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    onerror="this.onerror=null; this.src='${FALLBACK_IMAGE}';">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                <p class="text-white text-xs font-medium line-clamp-1">${caption}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            } catch (error) {
+                console.error("Gagal memuat galeri:", error);
+                container.innerHTML = `<p class="text-sm text-red-400 col-span-full text-center">Gagal memuat galeri.</p>`;
             }
+        }
 
-            agendas.sort((a, b) => a.time - b.time);
-            
-            let targetAgenda = agendas.find(ag => ag.time >= now || isSameDay(new Date(ag.time), new Date()));
-            if (!targetAgenda) {
-                targetAgenda = agendas[agendas.length - 1];
+        loadIndexGallery();
+
+        // ==========================================
+        // 5. MODAL FOTO GALERI
+        // ==========================================
+        document.addEventListener('click', (e) => {
+            const card = e.target.closest('.gallery-card');
+            if (card) {
+                const src = card.getAttribute('data-src');
+                const caption = card.getAttribute('data-caption');
+                
+                const modalImg = document.getElementById('modalImg');
+                const modalCaption = document.getElementById('modalCaption');
+                const imageModal = document.getElementById('imageModal');
+
+                if (modalImg) modalImg.src = src;
+                if (modalCaption) modalCaption.innerText = caption || '';
+                if (imageModal) imageModal.classList.remove('hidden');
             }
+        });
 
-            banner.style.display = 'block';
-            banner.classList.remove('hidden');
+        const closeModal = () => document.getElementById('imageModal')?.classList.add('hidden');
+        document.getElementById('closeModalBtn')?.addEventListener('click', closeModal);
+        document.getElementById('imageModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'imageModal') closeModal();
+        });
 
-            const tanggalFormatted = new Date(targetAgenda.tanggal).toLocaleDateString('id-ID', {
-                weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
-            });
+        // ==========================================
+        // 6. COUNTDOWN AGENDA TERDEKAT
+        // ==========================================
+        const isSameDay = (d1, d2) => 
+            d1.getFullYear() === d2.getFullYear() &&
+            d1.getMonth() === d2.getMonth() &&
+            d1.getDate() === d2.getDate();
 
-            setInterval(() => {
-                const nowTime = new Date().getTime();
-                const distance = targetAgenda.time - nowTime;
+        async function loadCountdownAgenda() {
+            try {
+                const banner = document.getElementById('countdown-banner');
+                if (!banner) return;
 
-                const cdJudul = document.getElementById('cd-judul');
-                const cdInfo = document.getElementById('cd-info');
+                const querySnapshot = await getDocs(collection(db, "agendas"));
 
-                if (isSameDay(new Date(targetAgenda.time), new Date()) || distance <= 0) {
-                    banner.className = "relative overflow-hidden bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 bg-[length:200%_200%] animate-gradient border border-emerald-400/60 p-6 rounded-2xl shadow-2xl backdrop-blur-md";
-                    
-                    const smallBadge = banner.querySelector('span.inline-flex');
-                    if (smallBadge) smallBadge.style.display = 'none';
+                if (querySnapshot.empty) {
+                    banner.style.display = 'none';
+                    return;
+                }
 
-                    if (cdJudul) cdJudul.innerHTML = `<span class="inline-block animate-bounce mr-1">🎉</span> HARI INI: ${targetAgenda.judul || 'Agenda Karang Taruna'} <span class="inline-block animate-bounce ml-1">🎉</span>`;
-                    if (cdInfo) cdInfo.innerHTML = `📍 Lokasi: <span class="font-semibold text-white">${targetAgenda.lokasi || 'Lokasi menyusul'}</span> • Yuk segera merapat ke lokasi!`;
-                    
-                    const timerContainer = banner.querySelector('.flex.items-center.gap-2');
-                    if (timerContainer && !timerContainer.dataset.changed) {
-                        timerContainer.dataset.changed = "true";
-                        timerContainer.innerHTML = `
-                            <div class="flex items-center gap-3">
-                                <span class="bg-white/20 text-white border border-white/30 px-4 py-2.5 rounded-xl text-xs md:text-sm font-bold tracking-wider uppercase shadow-lg transition animate-pulse">
-                                    🚀 Acara Sedang Berlangsung!
-                                </span>
+                const now = new Date().getTime();
+                let agendas = [];
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.tanggal) {
+                        const agendaTime = new Date(data.tanggal).getTime();
+                        agendas.push({ ...data, time: agendaTime });
+                    }
+                });
+
+                if (agendas.length === 0) {
+                    banner.style.display = 'none';
+                    return;
+                }
+
+                agendas.sort((a, b) => a.time - b.time);
+                
+                let targetAgenda = agendas.find(ag => ag.time >= now || isSameDay(new Date(ag.time), new Date()));
+                if (!targetAgenda) {
+                    targetAgenda = agendas[agendas.length - 1];
+                }
+
+                banner.style.display = 'block';
+                banner.classList.remove('hidden');
+
+                const tanggalFormatted = new Date(targetAgenda.tanggal).toLocaleDateString('id-ID', {
+                    weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                });
+
+                setInterval(() => {
+                    const nowTime = new Date().getTime();
+                    const distance = targetAgenda.time - nowTime;
+
+                    const cdJudul = document.getElementById('cd-judul');
+                    const cdInfo = document.getElementById('cd-info');
+
+                    if (isSameDay(new Date(targetAgenda.time), new Date()) || distance <= 0) {
+                        banner.className = "relative overflow-hidden bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 bg-[length:200%_200%] animate-gradient border border-emerald-400/60 p-6 rounded-2xl shadow-2xl backdrop-blur-md";
+                        
+                        const smallBadge = banner.querySelector('span.inline-flex');
+                        if (smallBadge) smallBadge.style.display = 'none';
+
+                        if (cdJudul) cdJudul.innerHTML = `<span class="inline-block animate-bounce mr-1">🎉</span> HARI INI: ${targetAgenda.judul || 'Agenda Karang Taruna'} <span class="inline-block animate-bounce ml-1">🎉</span>`;
+                        if (cdInfo) cdInfo.innerHTML = `📍 Lokasi: <span class="font-semibold text-white">${targetAgenda.lokasi || 'Lokasi menyusul'}</span> • Yuk segera merapat ke lokasi!`;
+                        
+                        const timerContainer = banner.querySelector('.flex.items-center.gap-2');
+                        if (timerContainer && !timerContainer.dataset.changed) {
+                            timerContainer.dataset.changed = "true";
+                            timerContainer.innerHTML = `
+                                <div class="flex items-center gap-3">
+                                    <span class="bg-white/20 text-white border border-white/30 px-4 py-2.5 rounded-xl text-xs md:text-sm font-bold tracking-wider uppercase shadow-lg transition animate-pulse">
+                                        🚀 Acara Sedang Berlangsung!
+                                    </span>
+                                </div>
+                            `;
+                        }
+                    } else {
+                        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        if (cdJudul) cdJudul.innerText = targetAgenda.judul || 'Agenda Terdekat';
+                        if (cdInfo) cdInfo.innerText = `📍 Lokasi: ${targetAgenda.lokasi || '-'} | 📅 ${tanggalFormatted}`;
+
+                        const elDays = document.getElementById('cd-days');
+                        const elHours = document.getElementById('cd-hours');
+                        const elMinutes = document.getElementById('cd-minutes');
+                        const elSeconds = document.getElementById('cd-seconds');
+
+                        if (elDays) elDays.innerText = days < 10 ? '0' + days : days;
+                        if (elHours) elHours.innerText = hours < 10 ? '0' + hours : hours;
+                        if (elMinutes) elMinutes.innerText = minutes < 10 ? '0' + minutes : minutes;
+                        if (elSeconds) elSeconds.innerText = seconds < 10 ? '0' + seconds : seconds;
+                    }
+                }, 1000);
+
+            } catch (err) {
+                console.error("Gagal load countdown:", err);
+            }
+        }
+
+        // ==========================================
+        // 7. LOGIC RENDER BANNER EVENT & POSTER
+        // ==========================================
+        function fixDriveUrl(url) {
+            if (!url) return '';
+            const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
+            if (match && match[1]) {
+                return `https://lh3.googleusercontent.com/d/${match[1]}`;
+            }
+            return url;
+        }
+
+        async function loadBannerEvents() {
+            const containerBanner = document.getElementById('banner-event-container');
+            if (!containerBanner) return;
+
+            try {
+                const querySnapshot = await getDocs(collection(db, "events"));
+                
+                if (querySnapshot.empty) {
+                    containerBanner.innerHTML = '';
+                    return;
+                }
+
+                const todayStr = new Date().toISOString().split('T')[0];
+                let htmlContent = '';
+
+                querySnapshot.forEach((docItem) => {
+                    const data = docItem.data();
+
+                    const tglTampil = data.tanggalTampil || '';
+                    const tglMulai = data.tanggalMulai || '';
+                    const isSudahTampil = !tglTampil || todayStr >= tglTampil;
+
+                    const imageUrl = fixDriveUrl(data.posterUrl || data.gambar || '');
+
+                    if (isSudahTampil) {
+                        htmlContent += `
+                            <div class="relative overflow-hidden bg-gradient-to-br from-slate-900/90 via-slate-900/80 to-indigo-950/70 border border-amber-500/30 p-5 md:p-6 rounded-3xl shadow-2xl backdrop-blur-xl flex flex-col md:flex-row items-center gap-6 group">
+                                
+                                <!-- GLOW / HIGHLIGHT EKSKLUSIF -->
+                                <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                                <!-- CONTAINER POSTER -->
+                                ${imageUrl ? `
+                                    <div onclick="openPosterModal('${imageUrl}')" 
+                                         class="relative w-full md:w-64 h-72 md:h-80 shrink-0 rounded-2xl overflow-hidden border border-amber-500/20 shadow-lg cursor-pointer flex items-center justify-center group/img">
+                                        
+                                        <!-- Latar Belakang Blur -->
+                                        <div class="absolute inset-0 bg-cover bg-center scale-110 blur-md opacity-60 brightness-75 transition-transform duration-500 group-hover/img:scale-125" 
+                                             style="background-image: url('${imageUrl}');"></div>
+                                        
+                                        <!-- Gambar Utama -->
+                                        <img src="${imageUrl}" 
+                                             alt="${data.judul || 'Poster Event'}" 
+                                             class="relative z-10 max-h-full max-w-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover/img:scale-105">
+                                        
+                                        <!-- Overlay Petunjuk Klik -->
+                                        <div class="absolute inset-0 bg-black/40 z-20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-white text-xs font-semibold">
+                                            <span>🔍 Perbesar Poster</span>
+                                        </div>
+                                    </div>
+                                ` : ''}
+
+                                <!-- DETAIL EVENT -->
+                                <div class="flex-1 space-y-3 text-left w-full z-10">
+                                    <div>
+                                        <span class="text-[10px] uppercase font-extrabold tracking-widest text-amber-300 bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30 inline-block shadow-sm">
+                                            ⭐ PROGRAM UNGGULAN & SPESIAL
+                                        </span>
+                                        <h3 class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-amber-200 mt-2 leading-snug">
+                                            ${data.judul || 'Nama Event'}
+                                        </h3>
+                                    </div>
+                                    
+                                    <div class="text-xs md:text-sm text-slate-300 space-y-2 pt-1 border-y border-slate-800/80 py-3">
+                                        <p class="flex items-center gap-2">
+                                            <span class="p-1 bg-amber-500/10 rounded-md border border-amber-500/20">📅</span> 
+                                            <span class="text-slate-400">Tanggal Acara:</span> 
+                                            <span class="text-amber-300 font-bold">${tglMulai || '-'}</span>
+                                        </p>
+                                        ${data.lokasi ? `
+                                            <p class="flex items-center gap-2">
+                                                <span class="p-1 bg-cyan-500/10 rounded-md border border-cyan-500/20">📍</span> 
+                                                <span class="text-slate-400">Lokasi:</span> 
+                                                <span class="text-slate-200 font-medium">${data.lokasi}</span>
+                                            </p>
+                                        ` : ''}
+                                    </div>
+
+                                    ${data.deskripsi ? `
+                                        <p class="text-xs md:text-sm text-slate-300 leading-relaxed line-clamp-3">
+                                            ${data.deskripsi}
+                                        </p>
+                                    ` : ''}
+
+                                    <p class="text-[11px] text-amber-400/80 italic flex items-center gap-1 pt-1">
+                                        💡 Tip: Klik gambar poster untuk melihat tampilan penuh.
+                                    </p>
+                                </div>
+
                             </div>
                         `;
                     }
-                } else {
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                });
 
-                    if (cdJudul) cdJudul.innerText = targetAgenda.judul || 'Agenda Terdekat';
-                    if (cdInfo) cdInfo.innerText = `📍 Lokasi: ${targetAgenda.lokasi || '-'} | 📅 ${tanggalFormatted}`;
+                containerBanner.innerHTML = htmlContent;
 
-                    const elDays = document.getElementById('cd-days');
-                    const elHours = document.getElementById('cd-hours');
-                    const elMinutes = document.getElementById('cd-minutes');
-                    const elSeconds = document.getElementById('cd-seconds');
-
-                    if (elDays) elDays.innerText = days < 10 ? '0' + days : days;
-                    if (elHours) elHours.innerText = hours < 10 ? '0' + hours : hours;
-                    if (elMinutes) elMinutes.innerText = minutes < 10 ? '0' + minutes : minutes;
-                    if (elSeconds) elSeconds.innerText = seconds < 10 ? '0' + seconds : seconds;
-                }
-            }, 1000);
-
-        } catch (err) {
-            console.error("Gagal load countdown:", err);
-        }
-    }
-
-   // ==========================================
-    // 7. LOGIC RENDER BANNER EVENT & POSTER
-    // ==========================================
-
-    function fixDriveUrl(url) {
-        if (!url) return '';
-        const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
-        if (match && match[1]) {
-            return `https://lh3.googleusercontent.com/d/${match[1]}`;
-        }
-        return url;
-    }
-
-    async function loadBannerEvents() {
-        const containerBanner = document.getElementById('banner-event-container');
-        if (!containerBanner) return;
-
-        try {
-            const querySnapshot = await getDocs(collection(db, "events"));
-            
-            if (querySnapshot.empty) {
-                containerBanner.innerHTML = '';
-                return;
+            } catch (err) {
+                console.error("Gagal load banner event:", err);
             }
-
-            const todayStr = new Date().toISOString().split('T')[0];
-            let htmlContent = '';
-
-            querySnapshot.forEach((docItem) => {
-                const data = docItem.data();
-
-                const tglTampil = data.tanggalTampil || '';
-                const tglMulai = data.tanggalMulai || '';
-                const isSudahTampil = !tglTampil || todayStr >= tglTampil;
-
-                const imageUrl = fixDriveUrl(data.posterUrl || data.gambar || '');
-
-                if (isSudahTampil) {
-                    htmlContent += `
-                        <div class="relative overflow-hidden bg-gradient-to-br from-slate-900/90 via-slate-900/80 to-indigo-950/70 border border-amber-500/30 p-5 md:p-6 rounded-3xl shadow-2xl backdrop-blur-xl flex flex-col md:flex-row items-center gap-6 group">
-                            
-                            <!-- GLOW / HIGHLIGHT EKSKLUSIF -->
-                            <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                            <!-- CONTAINER POSTER (BLUR BACKGROUND + ZOOM ON CLICK) -->
-                            ${imageUrl ? `
-                                <div onclick="openPosterModal('${imageUrl}')" 
-                                     class="relative w-full md:w-64 h-72 md:h-80 shrink-0 rounded-2xl overflow-hidden border border-amber-500/20 shadow-lg cursor-pointer flex items-center justify-center group/img">
-                                    
-                                    <!-- Latar Belakang Blur (Menghilangkan Sisi Kosong) -->
-                                    <div class="absolute inset-0 bg-cover bg-center scale-110 blur-md opacity-60 brightness-75 transition-transform duration-500 group-hover/img:scale-125" 
-                                         style="background-image: url('${imageUrl}');"></div>
-                                    
-                                    <!-- Gambar Utama Utuh (Portrait) -->
-                                    <img src="${imageUrl}" 
-                                         alt="${data.judul || 'Poster Event'}" 
-                                         class="relative z-10 max-h-full max-w-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover/img:scale-105">
-                                    
-                                    <!-- Overlay Petunjuk Klik -->
-                                    <div class="absolute inset-0 bg-black/40 z-20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-white text-xs font-semibold">
-                                        <span>🔍 Perbesar Poster</span>
-                                    </div>
-                                </div>
-                            ` : ''}
-
-                            <!-- DETAIL EVENT -->
-                            <div class="flex-1 space-y-3 text-left w-full z-10">
-                                <div>
-                                    <span class="text-[10px] uppercase font-extrabold tracking-widest text-amber-300 bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30 inline-block shadow-sm">
-                                        ⭐ PROGRAM UNGGULAN & SPESIAL
-                                    </span>
-                                    <h3 class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-amber-200 mt-2 leading-snug">
-                                        ${data.judul || 'Nama Event'}
-                                    </h3>
-                                </div>
-                                
-                                <div class="text-xs md:text-sm text-slate-300 space-y-2 pt-1 border-y border-slate-800/80 py-3">
-                                    <p class="flex items-center gap-2">
-                                        <span class="p-1 bg-amber-500/10 rounded-md border border-amber-500/20">📅</span> 
-                                        <span class="text-slate-400">Tanggal Acara:</span> 
-                                        <span class="text-amber-300 font-bold">${tglMulai || '-'}</span>
-                                    </p>
-                                    ${data.lokasi ? `
-                                        <p class="flex items-center gap-2">
-                                            <span class="p-1 bg-cyan-500/10 rounded-md border border-cyan-500/20">📍</span> 
-                                            <span class="text-slate-400">Lokasi:</span> 
-                                            <span class="text-slate-200 font-medium">${data.lokasi}</span>
-                                        </p>
-                                    ` : ''}
-                                </div>
-
-                                ${data.deskripsi ? `
-                                    <p class="text-xs md:text-sm text-slate-300 leading-relaxed line-clamp-3">
-                                        ${data.deskripsi}
-                                    </p>
-                                ` : ''}
-
-                                <p class="text-[11px] text-amber-400/80 italic flex items-center gap-1 pt-1">
-                                    💡 Tip: Klik gambar poster untuk melihat tampilan penuh.
-                                </p>
-                            </div>
-
-                        </div>
-                    `;
-                }
-            });
-
-            containerBanner.innerHTML = htmlContent;
-
-        } catch (err) {
-            console.error("Gagal load banner event:", err);
         }
-    }
 
-    // Fungsi untuk membuka Modal Poster
-    window.openPosterModal = function(url) {
+        // Fungsi untuk membuka Modal Poster
+        window.openPosterModal = function(url) {
+            const modal = document.getElementById('poster-modal');
+            const modalImg = document.getElementById('poster-modal-img');
+            if (modal && modalImg) {
+                modalImg.src = url;
+                modal.classList.remove('hidden');
+            }
+        };
+
+        // Event Handler Tutup Modal
+        const closeModalBtn = document.getElementById('close-poster-modal');
         const modal = document.getElementById('poster-modal');
-        const modalImg = document.getElementById('poster-modal-img');
-        if (modal && modalImg) {
-            modalImg.src = url;
-            modal.classList.remove('hidden');
+        if (closeModalBtn && modal) {
+            closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.add('hidden');
+            });
         }
-    };
 
-    // Event Handler Tutup Modal
-    const closeModalBtn = document.getElementById('close-poster-modal');
-    const modal = document.getElementById('poster-modal');
-    if (closeModalBtn && modal) {
-        closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.classList.add('hidden');
-        });
-    }
-
-    loadBannerEvents();
-    loadCountdownAgenda();
-</script>
+        loadBannerEvents();
+        loadCountdownAgenda();
+    </script>
 
 </body>
 </html>
