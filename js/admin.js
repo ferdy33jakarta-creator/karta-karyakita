@@ -12,6 +12,9 @@ import {
     arrayUnion
 } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 
+// URL Endpoint Backend Node.js milik kamu (Ubah saat aplikasi di-deploy online)
+const BACKEND_URL = 'http://localhost:3000/api/send-notification';
+
 // ==========================================
 // FUNGSI UMUM HAPUS DATA (DIPAKAI BERSAMA)
 // ==========================================
@@ -134,23 +137,20 @@ if (formGaleri) {
         try {
             const galeriRef = collection(db, "galleries");
             
-            // Cek apakah album dengan nama ini sudah ada di Firestore
             const q = query(galeriRef, where("album", "==", album));
             const querySnapshot = await getDocs(q);
 
             if (!querySnapshot.empty) {
-                // ALBUM SUDAH ADA -> GABUNGKAN FOTO BARU
                 const existingDoc = querySnapshot.docs[0];
                 const docRef = doc(db, "galleries", existingDoc.id);
 
                 await updateDoc(docRef, {
                     foto: arrayUnion(...fotoArray),
-                    judul: judul || existingDoc.data().judul // Update judul/caption jika diisi
+                    judul: judul || existingDoc.data().judul
                 });
 
                 alert(`Berhasil! ${fotoArray.length} foto baru ditambahkan ke album "${album}" yang sudah ada.`);
             } else {
-                // ALBUM BELUM ADA -> BUAT ALBUM BARU
                 await addDoc(galeriRef, {
                     album, 
                     judul, 
@@ -212,7 +212,6 @@ if (gridGaleri) {
 
             const listFoto = data.foto || (data.url ? [data.url] : ['https://via.placeholder.com/300x200?text=No+Image']);
             
-            // Konversi foto utama pertama menggunakan fungsi Google Drive
             const rawFotoUtama = listFoto[0];
             const fotoUtama = convertDriveLink(rawFotoUtama);
             
@@ -237,7 +236,6 @@ if (gridGaleri) {
             `;
         });
 
-        // Populate daftar nama album di datalist HTML untuk auto-complete
         if (daftarAlbumDatalist) {
             albumSet.forEach(namaAlbum => {
                 const opt = document.createElement('option');
@@ -249,8 +247,50 @@ if (gridGaleri) {
 }
 
 // ==========================================
-// 5. TAMBAH & READ PENGUMUMAN + SEBARKAN KE WA
+// 5. TAMBAH & READ PENGUMUMAN + SEBARKAN NOTIFIKASI
 // ==========================================
+
+// Fungsi Mengirim Push Notification FCM via Backend Server (API HTTP v1)
+async function sendNotificationToAllWarga(judul, isi) {
+    try {
+        // Ambil token HP warga dari Firestore collection 'fcm_tokens'
+        const tokensSnapshot = await getDocs(collection(db, "fcm_tokens"));
+        const tokens = [];
+        tokensSnapshot.forEach((doc) => {
+            if (doc.data().token) {
+                tokens.push(doc.data().token);
+            }
+        });
+
+        if (tokens.length === 0) {
+            console.log("Belum ada perangkat warga terdaftar untuk notifikasi.");
+            return;
+        }
+
+        // Panggil Server Backend untuk memproses kunci Service Account (.json) secara aman
+        const response = await fetch(BACKEND_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: `📢 Pengumuman RT 07: ${judul}`,
+                body: isi,
+                tokens: tokens
+            })
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            console.log('Notifikasi push FCM berhasil terkirim ke warga!');
+        } else {
+            console.error('Gagal mengirim notifikasi:', result.error);
+        }
+    } catch (err) {
+        console.error('Terjadi kesalahan saat menghubungi server notifikasi:', err);
+    }
+}
+
 const formPengumuman = document.getElementById('form-pengumuman');
 if (formPengumuman) {
     formPengumuman.addEventListener('submit', async (e) => {
@@ -259,11 +299,16 @@ if (formPengumuman) {
         const isi = document.getElementById('pengumuman-isi').value.trim();
 
         try {
+            // 1. Simpan ke Firestore
             await addDoc(collection(db, "announcements"), {
                 judul, isi,
                 createdAt: new Date().toISOString()
             });
-            alert('Pengumuman berhasil ditambahkan!');
+
+            // 2. Triger pengiriman Push Notification ke HP warga
+            await sendNotificationToAllWarga(judul, isi);
+
+            alert('Pengumuman berhasil diterbitkan dan notifikasi terkirim!');
             formPengumuman.reset();
         } catch (err) {
             alert('Gagal menyimpan pengumuman: ' + err.message);
@@ -283,10 +328,7 @@ if (pengumumanContainer) {
             const data = docItem.data();
             const id = docItem.id;
 
-            // Link website RT kamu (bisa disesuaikan link aslinya)
             const linkWebsite = "https://karta-karyakita.vercel.app/"; 
-
-            // Format draf pesan yang otomatis terbuat
             const pesanWa = `📢 *PENGUMUMAN WARGA RT 07*\n\n*${data.judul || 'Tanpa Judul'}*\n${data.isi || '-'}\n\nCek pengumuman & info lengkapnya di website resmi:\n🌐 ${linkWebsite}\n\nTerima kasih atas perhatiannya!`;
             const encodedPesan = encodeURIComponent(pesanWa);
 
